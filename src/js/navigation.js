@@ -217,23 +217,133 @@
   function markActiveNav() {
     const current = window.location.pathname.split("/").pop() || "index.html";
     const currentAbs = toAbsoluteHref("./" + current);
-    document.querySelectorAll("#header nav a").forEach((anchor) => {
+    document.querySelectorAll("#header nav a, .qc-mobile-nav-link").forEach((anchor) => {
       const href = anchor.getAttribute("href");
       if (!href || href === "#") {
         return;
       }
       const isCurrent = toAbsoluteHref(href) === currentAbs;
       if (isCurrent) {
-        anchor.classList.remove("text-textSecondary");
-        anchor.classList.add("text-accent", "font-medium");
-        if (!anchor.classList.contains("border-b-2")) {
-          anchor.classList.add("border-b-2", "border-accent", "pb-1");
+        if (anchor.classList.contains("qc-mobile-nav-link")) {
+          anchor.classList.add("is-active");
+        } else {
+          anchor.classList.remove("text-textSecondary");
+          anchor.classList.add("text-accent", "font-medium");
+          if (!anchor.classList.contains("border-b-2")) {
+            anchor.classList.add("border-b-2", "border-accent", "pb-1");
+          }
         }
+      }
+    });
+  }
+
+  function buildMobileNav() {
+    const header = document.querySelector("#header");
+    if (!header || document.querySelector(".qc-mobile-nav-toggle")) {
+      return;
+    }
+
+    const nav = header.querySelector("nav");
+    if (!nav) {
+      return;
+    }
+
+    const desktopAnchors = Array.from(nav.querySelectorAll("a"));
+    if (!desktopAnchors.length) {
+      return;
+    }
+
+    const rightSection = header.querySelector(".flex.items-center.space-x-4");
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "qc-mobile-nav-toggle";
+    toggle.setAttribute("aria-label", "Open navigation menu");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+
+    if (rightSection) {
+      rightSection.insertBefore(toggle, rightSection.firstChild);
+    } else {
+      header.appendChild(toggle);
+    }
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "qc-mobile-nav-backdrop";
+
+    const drawer = document.createElement("aside");
+    drawer.className = "qc-mobile-nav-drawer";
+    drawer.setAttribute("aria-hidden", "true");
+
+    const closeLabel =
+      (header.querySelector(".text-2xl.font-bold") && header.querySelector(".text-2xl.font-bold").textContent.trim()) ||
+      "Menu";
+
+    const linksHtml = desktopAnchors
+      .map((a) => {
+        const href = a.getAttribute("href") || "./index.html";
+        const label = a.textContent.replace(/\s+/g, " ").trim();
+        return '<a class="qc-mobile-nav-link" href="' + href + '">' + label + "</a>";
+      })
+      .join("");
+
+    drawer.innerHTML =
+      '<div class="qc-mobile-nav-head">' +
+      '<span class="qc-mobile-nav-title">' + closeLabel + "</span>" +
+      '<button type="button" class="qc-mobile-nav-close" aria-label="Close navigation menu">' +
+      '<i class="fa-solid fa-xmark"></i>' +
+      "</button>" +
+      "</div>" +
+      '<div class="qc-mobile-nav-links">' +
+      linksHtml +
+      "</div>";
+
+    document.body.appendChild(backdrop);
+    document.body.appendChild(drawer);
+
+    const closeBtn = drawer.querySelector(".qc-mobile-nav-close");
+
+    function openMenu() {
+      document.body.classList.add("qc-mobile-nav-open");
+      toggle.setAttribute("aria-expanded", "true");
+      drawer.setAttribute("aria-hidden", "false");
+    }
+
+    function closeMenu() {
+      document.body.classList.remove("qc-mobile-nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+
+    toggle.addEventListener("click", function () {
+      if (document.body.classList.contains("qc-mobile-nav-open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener("click", closeMenu);
+    backdrop.addEventListener("click", closeMenu);
+
+    drawer.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 1024) {
+        closeMenu();
       }
     });
   }
 
   wireAnchors();
   wireButtons();
+  buildMobileNav();
   markActiveNav();
 })();
