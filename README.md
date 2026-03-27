@@ -8,6 +8,8 @@ Base inicial estatica del proyecto de trading con IA.
 .
 ├── index.html
 ├── figma-design/
+├── scripts/
+	└── smoke-routes.sh
 └── src/
 	├── assets/
 	│   └── images/
@@ -77,3 +79,11 @@ python3 -m http.server 5500
 ```
 
 Luego abre `http://localhost:5500/`.
+
+## Smoke Test
+
+Valida rapidamente consistencia de rutas internas y assets de las vistas estaticas.
+
+```bash
+./scripts/smoke-routes.sh
+```
