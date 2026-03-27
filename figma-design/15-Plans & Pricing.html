@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plans & Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#F0B323',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141824',
+                        text: '#E5E7EB',
+                        border: '#1F2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text font-sans">
+
+<nav id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Quantum Chart</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Trading Copilot</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Brokers</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Stock Markets</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">E-learning</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Q&A</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Forum</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">News</a>
+                    <a href="#" class="text-accent font-semibold transition text-sm">Plans & Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-text hover:text-white transition">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="text-text hover:text-white transition">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <a href="#" class="text-sm text-text hover:text-white transition font-medium">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section id="pricing-hero" class="py-16 bg-gradient-to-b from-surface to-background">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold text-white mb-4">Choose Your Trading Plan</h1>
+        <p class="text-xl text-text mb-8">Unlock powerful AI-driven insights and trading tools tailored to your needs</p>
+        
+        <div class="flex items-center justify-center space-x-4 mb-8">
+            <span class="text-text">Monthly</span>
+            <button id="billing-toggle" class="relative w-14 h-7 bg-border rounded-full transition">
+                <div class="billing-slider absolute top-1 left-1 w-5 h-5 bg-accent rounded-full transition-transform"></div>
+            </button>
+            <span class="text-white font-semibold">Annual <span class="text-success text-sm">(Save 20%)</span></span>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4">
+            <span class="text-text">USD</span>
+            <button id="currency-toggle" class="relative w-14 h-7 bg-border rounded-full transition">
+                <div class="currency-slider absolute top-1 left-1 w-5 h-5 bg-primary rounded-full transition-transform"></div>
+            </button>
+            <span class="text-white font-semibold">DOP (DR Peso)</span>
+        </div>
+    </div>
+</section>
+
+<section id="pricing-plans" class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            
+            <div class="bg-surface border border-border rounded-xl p-8 hover:border-accent transition">
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-2xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white text-center mb-2">Free</h3>
+                <div class="text-center mb-6">
+                    <span class="text-4xl font-bold text-white">$0</span>
+                    <p class="text-text text-sm mt-1">Forever free</p>
+                </div>
+                <button class="w-full bg-background border border-border hover:border-accent text-white font-semibold py-3 rounded-lg transition mb-6">
+                    Get Started
+                </button>
+                <div class="space-y-3">
+                    <p class="text-text font-semibold mb-3">Perfect for beginners</p>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">5 AI signals per day</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Trading Copilot: 10 queries/day</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">1 broker integration</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Basic price alerts</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Access to 3 free courses</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Community forum access</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-times text-text/40 mt-1 mr-3"></i>
+                        <span class="text-text/40 text-sm">DR Market real-time data</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-times text-text/40 mt-1 mr-3"></i>
+                        <span class="text-text/40 text-sm">Advanced analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface border-2 border-primary rounded-xl p-8 relative shadow-xl">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    Most Popular
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-blue-700 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white text-center mb-2">Pro</h3>
+                <div class="text-center mb-6">
+                    <span class="text-4xl font-bold text-white price-monthly">$29</span>
+                    <span class="text-4xl font-bold text-white price-annual hidden">$23</span>
+                    <p class="text-text text-sm mt-1">per month</p>
+                </div>
+                <button class="w-full bg-gradient-to-r from-primary to-blue-700 hover:opacity-90 text-white font-semibold py-3 rounded-lg transition mb-6">
+                    Upgrade to Pro
+                </button>
+                <div class="space-y-3">
+                    <p class="text-text font-semibold mb-3">For serious traders</p>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Unlimited AI signals</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Trading Copilot: 100 queries/day</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">3 broker integrations</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Advanced price alerts</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">All learning courses included</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Priority community support</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">DR Market real-time data</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Advanced analytics dashboard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-8 hover:border-accent transition">
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-yellow-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-crown text-white text-2xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white text-center mb-2">Elite</h3>
+                <div class="text-center mb-6">
+                    <span class="text-4xl font-bold text-white price-monthly">$79</span>
+                    <span class="text-4xl font-bold text-white price-annual hidden">$63</span>
+                    <p class="text-text text-sm mt-1">per month</p>
+                </div>
+                <button class="w-full bg-gradient-to-r from-accent to-yellow-600 hover:opacity-90 text-background font-semibold py-3 rounded-lg transition mb-6">
+                    Go Elite
+                </button>
+                <div class="space-y-3">
+                    <p class="text-text font-semibold mb-3">For professional traders</p>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Unlimited AI signals + predictions</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Trading Copilot: Unlimited</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Unlimited broker integrations</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Custom alerts & automation</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Premium courses + 1-on-1 sessions</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">VIP community & expert calls</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">DR Market + Global real-time</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">AI portfolio optimization</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">API access for custom tools</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-surface to-background border border-border rounded-xl p-8 hover:border-secondary transition">
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-red-800 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-building text-white text-2xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-white text-center mb-2">Enterprise</h3>
+                <div class="text-center mb-6">
+                    <span class="text-3xl font-bold text-white">Custom</span>
+                    <p class="text-text text-sm mt-1">Tailored solutions</p>
+                </div>
+                <button class="w-full bg-gradient-to-r from-secondary to-red-800 hover:opacity-90 text-white font-semibold py-3 rounded-lg transition mb-6">
+                    Contact Sales
+                </button>
+                <div class="space-y-3">
+                    <p class="text-text font-semibold mb-3">For institutions & teams</p>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Everything in Elite</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Multi-user accounts</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Dedicated account manager</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Custom AI model training</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">White-label solutions</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">SLA & priority support</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Custom integrations</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">Advanced compliance tools</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-text text-sm">On-premise deployment option</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="comparison-table" class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white mb-4">Compare All Features</h2>
+            <p class="text-xl text-text">See what's included in each plan</p>
+        </div>
+
+        <div class="bg-background border border-border rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="text-left p-6 text-white font-semibold">Features</th>
+                            <th class="text-center p-6 text-white font-semibold">Free</th>
+                            <th class="text-center p-6 text-white font-semibold bg-primary/10">Pro</th>
+                            <th class="text-center p-6 text-white font-semibold">Elite</th>
+                            <th class="text-center p-6 text-white font-semibold">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">AI Trading Signals (per day)</td>
+                            <td class="text-center p-6 text-text">5</td>
+                            <td class="text-center p-6 text-text bg-primary/10">Unlimited</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">Trading Copilot Queries</td>
+                            <td class="text-center p-6 text-text">10/day</td>
+                            <td class="text-center p-6 text-text bg-primary/10">100/day</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">Broker Integrations</td>
+                            <td class="text-center p-6 text-text">1</td>
+                            <td class="text-center p-6 text-text bg-primary/10">3</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                            <td class="text-center p-6 text-text">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">Price Alerts</td>
+                            <td class="text-center p-6 text-text">Basic</td>
+                            <td class="text-center p-6 text-text bg-primary/10">Advanced</td>
+                            <td class="text-center p-6 text-text">Custom</td>
+                            <td class="text-center p-6 text-text">Custom</td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">E-learning Access</td>
+                            <td class="text-center p-6 text-text">3 courses</td>
+                            <td class="text-center p-6 text-text bg-primary/10">All courses</td>
+                            <td class="text-center p-6 text-text">Premium + 1-on-1</td>
+                            <td class="text-center p-6 text-text">Custom training</td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">Community Access</td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6 bg-primary/10"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">DR Market Real-time Data</td>
+                            <td class="text-center p-6"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6 bg-primary/10"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">Advanced Analytics</td>
+                            <td class="text-center p-6"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6 bg-primary/10"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr class="border-b border-border">
+                            <td class="p-6 text-text">API Access</td>
+                            <td class="text-center p-6"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6 bg-primary/10"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-text">Dedicated Support</td>
+                            <td class="text-center p-6"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6 bg-primary/10"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-times text-text/40"></i></td>
+                            <td class="text-center p-6"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="py-20 bg-background">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+            <p class="text-xl text-text">Everything you need to know about our plans</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-white">Can I switch plans anytime?</h3>
+                    <i class="fas fa-chevron-down text-text"></i>
+                </div>
+                <p class="text-text mt-4 hidden">Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and billing is prorated.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-white">What payment methods do you accept?</h3>
+                    <i class="fas fa-chevron-down text-text"></i>
+                </div>
+                <p class="text-text mt-4 hidden">We accept all major credit cards, PayPal, and local Dominican Republic payment methods including bank transfers.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-white">Is there a free trial for paid plans?</h3>
+                    <i class="fas fa-chevron-down text-text"></i>
+                </div>
+                <p class="text-text mt-4 hidden">Yes! We offer a 14-day free trial for Pro and Elite plans. No credit card required to start.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-white">What's included in the DR Market access?</h3>
+                    <i class="fas fa-chevron-down text-text"></i>
+                </div>
+                <p class="text-text mt-4 hidden">Real-time quotes from BVRD (Bolsa de Valores de República Dominicana), historical data, company fundamentals, and local market news.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-white">Can I cancel my subscription?</h3>
+                    <i class="fas fa-chevron-down text-text"></i>
+                </div>
+                <p class="text-text mt-4 hidden">Yes, you can cancel anytime. Your access continues until the end of your billing period with no additional charges.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cta-section" class="py-20 bg-gradient-to-r from-primary to-secondary">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-white mb-4">Ready to Transform Your Trading?</h2>
+        <p class="text-xl text-white/90 mb-8">Join thousands of traders using AI-powered insights to make smarter decisions</p>
+        <div class="flex items-center justify-center space-x-4">
+            <button class="bg-white hover:bg-gray-100 text-primary px-8 py-4 rounded-lg text-lg font-semibold transition">
+                Start Free Trial
+            </button>
+            <button class="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-4 rounded-lg text-lg font-semibold transition">
+                Contact Sales
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div class="lg:col-span-1">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Quantum Chart</span>
+                </div>
+                <p class="text-text text-sm mb-6">AI-powered trading platform empowering traders in the Dominican Republic and beyond.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Features</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Trading Copilot</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Brokers</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Stock Markets</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">E-learning</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Q&A</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Forum</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Market Analysis</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Portfolio Management</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Risk Assessment</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Trading Signals</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">API Access</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Custom Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Help Center</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Contact Us</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">FAQs</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Community Guidelines</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Privacy Policy</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                <p class="text-text text-sm mb-4">Subscribe to get market insights and trading tips.</p>
+                <div class="space-y-3">
+                    <input type="email" placeholder="Your email" class="w-full bg-background border border-border rounded-lg px-4 py-2 text-text focus:outline-none focus:border-accent transition">
+                    <button class="w-full bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white py-2 rounded-lg font-semibold transition">
+                        Subscribe
+                    </button>
+                </div>
+                <div class="mt-6">
+                    <h5 class="text-white font-semibold mb-2 text-sm">Contact</h5>
+                    <p class="text-text text-sm mb-1"><i class="fas fa-envelope mr-2"></i>support@quantumchart.com</p>
+                    <p class="text-text text-sm"><i class="fas fa-phone mr-2"></i>+1 (809) 555-0100</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <p class="text-text text-sm mb-4 md:mb-0">© 2024 Quantum Chart. All rights reserved.</p>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Legal</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Privacy</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Security</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+    const billingToggle = document.getElementById('billing-toggle');
+    const billingSlider = document.querySelector('.billing-slider');
+    const currencyToggle = document.getElementById('currency-toggle');
+    const currencySlider = document.querySelector('.currency-slider');
+    let isAnnual = false;
+    let isDOP = false;
+
+    const prices = {
+        pro: { monthly: 29, annual: 23, monthlyDOP: 1682, annualDOP: 1335 },
+        elite: { monthly: 79, annual: 63, monthlyDOP: 4583, annualDOP: 3656 }
+    };
+
+    billingToggle.addEventListener('click', function() {
+        isAnnual = !isAnnual;
+        billingSlider.style.transform = isAnnual ? 'translateX(28px)' : 'translateX(0)';
+        billingToggle.style.backgroundColor = isAnnual ? '#F0B323' : '#1F2937';
+        updatePrices();
+    });
+
+    currencyToggle.addEventListener('click', function() {
+        isDOP = !isDOP;
+        currencySlider.style.transform = isDOP ? 'translateX(28px)' : 'translateX(0)';
+        currencyToggle.style.backgroundColor = isDOP ? '#002D62' : '#1F2937';
+        updatePrices();
+    });
+
+    function updatePrices() {
+        const priceMonthly = document.querySelectorAll('.price-monthly');
+        const priceAnnual = document.querySelectorAll('.price-annual');
+        
+        if (isAnnual) {
+            priceMonthly.forEach(el => el.classList.add('hidden'));
+            priceAnnual.forEach(el => el.classList.remove('hidden'));
+        } else {
+            priceMonthly.forEach(el => el.classList.remove('hidden'));
+            priceAnnual.forEach(el => el.classList.add('hidden'));
+        }
+
+        const symbol = isDOP ? 'RD$' : '$';
+        const proPrice = isAnnual ? (isDOP ? prices.pro.annualDOP : prices.pro.annual) : (isDOP ? prices.pro.monthlyDOP : prices.pro.monthly);
+        const elitePrice = isAnnual ? (isDOP ? prices.elite.annualDOP : prices.elite.annual) : (isDOP ? prices.elite.monthlyDOP : prices.elite.monthly);
+
+        document.querySelectorAll('.price-monthly')[0].textContent = symbol + proPrice;
+        document.querySelectorAll('.price-annual')[0].textContent = symbol + proPrice;
+        document.querySelectorAll('.price-monthly')[1].textContent = symbol + elitePrice;
+        document.querySelectorAll('.price-annual')[1].textContent = symbol + elitePrice;
+    }
+
+    const faqItems = document.querySelectorAll('#faq .cursor-pointer');
+    faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const answer = this.querySelector('p');
+            const icon = this.querySelector('i');
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+    });
+});
+</script>
+
+</body>
+</html>

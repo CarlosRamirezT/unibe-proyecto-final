@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brokers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#FFD700',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#000000',
+                        surface: '#1A1A1A',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#9CA3AF',
+                        border: '#374151'
+                    }
+                }
+            }
+        }
+    </script>
+    <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .broker-card { transition: all 0.3s ease; }
+        .broker-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15); }
+        .comparison-drawer { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background text-textPrimary">
+
+<header id="header" class="bg-surface border-b border-border fixed w-full top-0 z-50">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <i class="fa-solid fa-chart-line text-accent text-2xl mr-2"></i>
+                    <span class="text-textPrimary font-bold text-xl">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex ml-12 space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Home</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Stock Markets</a>
+                    <a href="#" class="text-accent border-b-2 border-accent pb-1">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Trading Copilot</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">News</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition">Plans & Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <a href="#" class="text-accent hover:text-yellow-500 font-semibold">Login</a>
+                <button class="bg-accent text-background font-semibold px-6 py-2 rounded hover:bg-yellow-500 transition">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="pt-16">
+    <section id="brokers-hero-section" class="bg-gradient-to-r from-primary to-primary/80 py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl font-bold mb-4">Connect Your Broker</h1>
+                <p class="text-textSecondary text-lg mb-6">Securely integrate with your preferred broker to start trading with AI-powered insights. Compare fees, features, and supported markets.</p>
+                <div class="flex items-center space-x-4">
+                    <div class="relative flex-1 max-w-md">
+                        <select class="bg-surface border border-border rounded px-4 py-3 text-textPrimary focus:outline-none focus:border-accent appearance-none pr-10 w-full">
+                            <option value="DO" selected>🇩🇴 Dominican Republic</option>
+                            <option value="US">🇺🇸 United States</option>
+                            <option value="MX">🇲🇽 Mexico</option>
+                            <option value="BR">🇧🇷 Brazil</option>
+                            <option value="CO">🇨🇴 Colombia</option>
+                            <option value="AR">🇦🇷 Argentina</option>
+                            <option value="ES">🇪🇸 Spain</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-textSecondary text-xs pointer-events-none"></i>
+                    </div>
+                    <button class="bg-accent text-background font-semibold px-6 py-3 rounded hover:bg-yellow-500 transition flex items-center">
+                        <i class="fa-solid fa-filter mr-2"></i>
+                        Filter Brokers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="brokers-directory-section" class="bg-background py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">Available Brokers</h2>
+                    <p class="text-textSecondary">12 brokers available in Dominican Republic</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="bg-surface border border-border rounded px-4 py-2 hover:border-accent transition text-sm">
+                        <i class="fa-solid fa-sliders mr-2"></i>
+                        Advanced Filters
+                    </button>
+                    <button class="bg-surface border border-border rounded px-4 py-2 hover:border-accent transition text-sm">
+                        <i class="fa-solid fa-sort mr-2"></i>
+                        Sort By: Rating
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div id="broker-card-1" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-building-columns text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Popular Securities</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">4.8 (2.4K)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-success bg-opacity-20 text-success text-xs px-2 py-1 rounded font-semibold">Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.15%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$500</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">$5</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">ETFs</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Bonds</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Crypto</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-surface border border-accent text-accent font-semibold px-4 py-2 rounded hover:bg-accent hover:text-background transition">
+                            Manage
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="broker-card-2" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Puesto de Bolsa BHD</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">4.2 (1.8K)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-background border border-border text-textSecondary text-xs px-2 py-1 rounded">Not Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.20%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$1,000</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">$10</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">ETFs</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Bonds</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-accent text-background font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">
+                            Connect
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="broker-card-3" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-accent to-secondary rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-landmark text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Jmmb Puesto</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">4.9 (3.2K)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-background border border-border text-textSecondary text-xs px-2 py-1 rounded">Not Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.12%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$250</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">Free</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">ETFs</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Options</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Futures</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-accent text-background font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">
+                            Connect
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="broker-card-4" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-coins text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Inversiones Banreservas</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">4.3 (1.5K)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-background border border-border text-textSecondary text-xs px-2 py-1 rounded">Not Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.18%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$750</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">$8</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Bonds</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Mutual Funds</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-accent text-background font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">
+                            Connect
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="broker-card-5" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-money-bill-trend-up text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Vimenca Puesto</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">3.9 (890)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-background border border-border text-textSecondary text-xs px-2 py-1 rounded">Not Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.22%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$1,500</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">$12</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">ETFs</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-accent text-background font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">
+                            Connect
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="broker-card-6" class="broker-card bg-surface border border-border rounded-lg p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Citivalores Puesto</h3>
+                                <div class="flex items-center mt-1">
+                                    <div class="flex text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                                    <span class="text-textSecondary text-xs ml-2">4.6 (2.1K)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="bg-background border border-border text-textSecondary text-xs px-2 py-1 rounded">Not Connected</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Trading Fee</span>
+                            <span class="font-semibold">0.16%</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-textSecondary text-sm">Min. Deposit</span>
+                            <span class="font-semibold">$600</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-textSecondary text-sm">Withdrawal Fee</span>
+                            <span class="font-semibold">$6</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-textSecondary text-sm mb-2">Supported Markets</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Stocks</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">ETFs</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Bonds</span>
+                            <span class="bg-background border border-border text-xs px-2 py-1 rounded">Options</span>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-accent text-background font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition">
+                            Connect
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </button>
+                        <button class="bg-surface border border-border text-textSecondary px-4 py-2 rounded hover:border-accent transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="bg-surface border border-border text-textPrimary font-semibold px-8 py-3 rounded hover:border-accent transition">
+                    Load More Brokers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison-section" class="bg-surface border-t border-border py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold">Compare Brokers</h2>
+                <button class="text-accent hover:text-yellow-500 text-sm font-semibold">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Reset Comparison
+                </button>
+            </div>
+
+            <div class="bg-background border border-border rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-border">
+                                <th class="text-left py-4 px-6 font-semibold w-48">Feature</th>
+                                <th class="text-center py-4 px-6 font-semibold">Popular Securities</th>
+                                <th class="text-center py-4 px-6 font-semibold">Jmmb Puesto</th>
+                                <th class="text-center py-4 px-6 font-semibold">Citivalores Puesto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Rating</td>
+                                <td class="py-4 px-6 text-center">
+                                    <div class="flex items-center justify-center text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <span class="ml-2 text-textSecondary">4.8</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <div class="flex items-center justify-center text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span class="ml-2 text-textSecondary">4.9</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <div class="flex items-center justify-center text-accent text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <span class="ml-2 text-textSecondary">4.6</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Trading Fee</td>
+                                <td class="py-4 px-6 text-center font-semibold">0.15%</td>
+                                <td class="py-4 px-6 text-center font-semibold text-success">0.12%</td>
+                                <td class="py-4 px-6 text-center font-semibold">0.16%</td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Min. Deposit</td>
+                                <td class="py-4 px-6 text-center font-semibold">$500</td>
+                                <td class="py-4 px-6 text-center font-semibold text-success">$250</td>
+                                <td class="py-4 px-6 text-center font-semibold">$600</td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Withdrawal Fee</td>
+                                <td class="py-4 px-6 text-center font-semibold">$5</td>
+                                <td class="py-4 px-6 text-center font-semibold text-success">Free</td>
+                                <td class="py-4 px-6 text-center font-semibold">$6</td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Stocks</td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">ETFs</td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Options</td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-xmark text-danger"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                            </tr>
+                            <tr class="border-b border-border hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Crypto</td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-xmark text-danger"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-xmark text-danger"></i></td>
+                            </tr>
+                            <tr class="hover:bg-surface transition">
+                                <td class="py-4 px-6 text-textSecondary">Mobile App</td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                                <td class="py-4 px-6 text-center"><i class="fa-solid fa-check text-success"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="connection-guide-section" class="bg-background py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">How to Connect Your Broker</h2>
+                    <p class="text-textSecondary text-lg">Secure OAuth-style authentication ensures your credentials are never shared with third parties</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-accent text-2xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Select Broker</h3>
+                        <p class="text-textSecondary text-sm">Choose your preferred broker from our verified list of partners</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-accent text-2xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Authorize Access</h3>
+                        <p class="text-textSecondary text-sm">Log in securely through your broker's authentication portal</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-accent text-2xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Start Trading</h3>
+                        <p class="text-textSecondary text-sm">Access AI-powered insights and execute trades seamlessly</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-surface border border-border rounded-lg p-8">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 bg-accent bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fa-solid fa-shield-halved text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-2">Bank-Level Security</h3>
+                            <p class="text-textSecondary mb-4">Your connection is protected with 256-bit encryption and multi-factor authentication. We never store your broker credentials.</p>
+                            <ul class="space-y-2 text-sm text-textSecondary">
+                                <li class="flex items-center">
+                                    <i class="fa-solid fa-check text-success mr-2"></i>
+                                    <span>OAuth 2.0 secure authentication</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa-solid fa-check text-success mr-2"></i>
+                                    <span>Read-only access by default</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa-solid fa-check text-success mr-2"></i>
+                                    <span>Revoke access anytime from your dashboard</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-chart-line text-accent text-2xl mr-2"></i>
+                    <span class="text-textPrimary font-bold text-xl">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6">AI-powered trading platform designed to help you make smarter investment decisions with real-time data and expert insights.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-background border border-border rounded-full flex items-center justify-center hover:border-accent transition">
+                        <i class="fa-brands fa-facebook-f text-textSecondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background border border-border rounded-full flex items-center justify-center hover:border-accent transition">
+                        <i class="fa-brands fa-twitter text-textSecondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background border border-border rounded-full flex items-center justify-center hover:border-accent transition">
+                        <i class="fa-brands fa-instagram text-textSecondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background border border-border rounded-full flex items-center justify-center hover:border-accent transition">
+                        <i class="fa-brands fa-linkedin-in text-textSecondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background border border-border rounded-full flex items-center justify-center hover:border-accent transition">
+                        <i class="fa-brands fa-youtube text-textSecondary"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-textPrimary font-semibold mb-4">Features</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Q&A</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Forum</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-textPrimary font-semibold mb-4">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Start Trading DR</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Plans & Pricing</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Market Data</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Portfolio Management</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Risk Analysis</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-textPrimary font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition">Legal</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-textPrimary font-semibold mb-4">Contact Information</h4>
+                    <div class="space-y-3 text-textSecondary">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-location-dot text-accent w-5"></i>
+                            <span class="ml-3">Santo Domingo, Dominican Republic</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-phone text-accent w-5"></i>
+                            <span class="ml-3">+1 (809) 555-0123</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-envelope text-accent w-5"></i>
+                            <span class="ml-3">support@quantumchart.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-textPrimary font-semibold mb-4">Newsletter</h4>
+                    <p class="text-textSecondary mb-4">Subscribe to get the latest market insights and trading tips</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Enter your email" class="flex-1 bg-background border border-border rounded-l px-4 py-2 text-textPrimary focus:outline-none focus:border-accent">
+                        <button class="bg-accent text-background font-semibold px-6 py-2 rounded-r hover:bg-yellow-500 transition">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-border mt-8 pt-8 text-center text-textSecondary text-sm">
+            <p>&copy; 2024 Quantum Chart. All rights reserved. Powered by AI technology.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

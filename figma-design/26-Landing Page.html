@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textPrimary hover:text-accent transition-colors font-medium">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors flex items-center">
+                            Features
+                            <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textSecondary hover:text-textPrimary px-4 py-2">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="hero-carousel" class="relative h-[600px] overflow-hidden">
+    <div class="carousel-container relative w-full h-full">
+        <div class="carousel-slide active absolute inset-0 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/7a3fdf916e-011f06eb9f36b75dcd72.png" alt="futuristic AI trading dashboard with holographic charts and data streams, dark blue and red accents, high-tech atmosphere" />
+            <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
+                <div class="grid grid-cols-2 gap-12 items-center w-full">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl font-bold leading-tight">
+                            AI-Powered Trading<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Analysis Platform</span>
+                        </h1>
+                        <p class="text-xl text-textSecondary leading-relaxed">
+                            Harness the power of artificial intelligence to make smarter trading decisions. Our advanced algorithms analyze market trends in real-time, providing you with actionable insights.
+                        </p>
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                            Explore AI Features
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="w-full h-auto max-h-96 object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e11364d815-9bf5e8a1ec76e0dc797d.png" alt="3D illustration of AI robot analyzing stock charts and financial data, transparent background, futuristic style" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1a413e2b5a-37c456dfd3b91c606bad.png" alt="professional trader workspace with multiple monitors showing stock charts, modern office, blue and red lighting" />
+            <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
+                <div class="grid grid-cols-2 gap-12 items-center w-full">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl font-bold leading-tight">
+                            Copy Expert<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Trading Strategies</span>
+                        </h1>
+                        <p class="text-xl text-textSecondary leading-relaxed">
+                            Follow and replicate the strategies of top-performing traders. Our Trading Copilot feature lets you learn from the best while building your portfolio automatically.
+                        </p>
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                            Start Copying
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="w-full h-auto max-h-96 object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/8574e65bdd-67e2df12278a95cc9e3b.png" alt="digital illustration of people connected in a network sharing trading signals, transparent background, modern style" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/61b63aa0d5-9a68b5d0bff64c56646f.png" alt="Dominican Republic stock exchange building with modern architecture, financial district, professional photography" />
+            <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
+                <div class="grid grid-cols-2 gap-12 items-center w-full">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl font-bold leading-tight">
+                            Trade Dominican Republic<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Stock Market</span>
+                        </h1>
+                        <p class="text-xl text-textSecondary leading-relaxed">
+                            Access the Dominican Republic stock market with ease. Get real-time quotes, market insights, and execute trades seamlessly through our platform designed for local investors.
+                        </p>
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                            Start Trading DR
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="w-full h-auto max-h-96 object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ce563c47a4-8e83e751a15286ccbe37.png" alt="Dominican Republic flag integrated with stock market chart, 3D rendering, transparent background" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/05b93b09cc-08518fed9b0d53f8ac87.png" alt="online learning classroom with financial charts and trading education materials, modern e-learning setup" />
+            <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
+                <div class="grid grid-cols-2 gap-12 items-center w-full">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl font-bold leading-tight">
+                            Master Trading<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">With Expert Courses</span>
+                        </h1>
+                        <p class="text-xl text-textSecondary leading-relaxed">
+                            Learn from industry professionals through our comprehensive e-learning platform. From beginner basics to advanced strategies, we have courses for every skill level.
+                        </p>
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                            Browse Courses
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="w-full h-auto max-h-96 object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/bce5074b03-9a34feaf0775c68ce6e6.png" alt="3D illustration of graduation cap with financial charts and books, education concept, transparent background" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 opacity-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ec1161ddce-661a40467e4ed31e6322.png" alt="community of traders collaborating and sharing ideas, modern forum discussion, diverse people" />
+            <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
+                <div class="grid grid-cols-2 gap-12 items-center w-full">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl font-bold leading-tight">
+                            Join Our Trading<br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">Community</span>
+                        </h1>
+                        <p class="text-xl text-textSecondary leading-relaxed">
+                            Connect with thousands of traders worldwide. Share insights, ask questions, and grow together through our active forum and Q&A platform designed for collaborative learning.
+                        </p>
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                            Join Community
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="w-full h-auto max-h-96 object-contain" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/a6d17f8022-e1bddfbdbf4982284887.png" alt="3D illustration of people networking in a digital space with chat bubbles, transparent background, modern style" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-100 transition-all"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-30 transition-all"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-30 transition-all"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-30 transition-all"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-30 transition-all"></button>
+    </div>
+
+    <button class="carousel-prev absolute left-6 top-1/2 transform -translate-y-1/2 z-30 bg-surface/80 backdrop-blur-sm text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-surface transition-all">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="carousel-next absolute right-6 top-1/2 transform -translate-y-1/2 z-30 bg-surface/80 backdrop-blur-sm text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-surface transition-all">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+</section>
+
+<section id="features-highlight" class="py-20 bg-background">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Powerful Features for Smart Trading</h2>
+            <p class="text-xl text-textSecondary">Everything you need to succeed in the markets</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-robot text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Trading Copilot</h3>
+                <p class="text-textSecondary leading-relaxed">AI-powered assistant that analyzes market conditions and suggests optimal trading opportunities based on your strategy and risk profile.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-building-columns text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Trusted Brokers</h3>
+                <p class="text-textSecondary leading-relaxed">Compare and connect with verified brokers offering competitive rates, secure platforms, and excellent customer support tailored to your needs.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-chart-line text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Stock Markets</h3>
+                <p class="text-textSecondary leading-relaxed">Access global and Dominican Republic stock markets with real-time data, advanced charting tools, and comprehensive market analysis at your fingertips.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-graduation-cap text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">E-learning</h3>
+                <p class="text-textSecondary leading-relaxed">Comprehensive courses from beginner to advanced levels, taught by industry experts with practical examples and interactive quizzes to test your knowledge.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-comments text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Q&A Platform</h3>
+                <p class="text-textSecondary leading-relaxed">Get your trading questions answered by experienced traders and financial experts. Learn from real-world scenarios and community insights.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-users text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Trading Forum</h3>
+                <p class="text-textSecondary leading-relaxed">Join discussions with thousands of active traders. Share strategies, market insights, and stay updated with the latest trading trends and opportunities.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-newspaper text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Market News</h3>
+                <p class="text-textSecondary leading-relaxed">Stay informed with curated financial news, market updates, and expert analysis from trusted sources worldwide and Dominican Republic markets.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all group">
+                <div class="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-flag text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Start Trading DR</h3>
+                <p class="text-textSecondary leading-relaxed">Specialized platform for Dominican Republic stock market trading with local payment methods, peso transactions, and dedicated support for DR investors.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="trending-stocks" class="py-20 bg-surface">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-4xl font-bold mb-2">Trending Stocks</h2>
+                <p class="text-textSecondary">Top performing stocks in the market</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-background border border-border rounded-lg p-1">
+                <button class="timeframe-btn active px-4 py-2 rounded-md bg-accent text-white font-medium transition-all">1D</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">5D</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">1W</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">1M</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">YTD</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">1Y</button>
+                <button class="timeframe-btn px-4 py-2 rounded-md text-textSecondary hover:text-white transition-all">Max</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-background border border-border rounded-xl p-6 hover:border-success transition-all cursor-pointer">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">AAPL</h3>
+                        <p class="text-sm text-textSecondary">Apple Inc.</p>
+                    </div>
+                    <button class="text-textSecondary hover:text-accent">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <div class="text-3xl font-bold">$178.45</div>
+                    <div class="flex items-center mt-1">
+                        <i class="fa-solid fa-arrow-up text-success text-sm mr-1"></i>
+                        <span class="text-success font-medium">+2.34%</span>
+                        <span class="text-textSecondary text-sm ml-2">+$4.08</span>
+                    </div>
+                </div>
+                <div class="h-20" id="chart-aapl"></div>
+            </div>
+
+            <div class="bg-background border border-border rounded-xl p-6 hover:border-success transition-all cursor-pointer">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">TSLA</h3>
+                        <p class="text-sm text-textSecondary">Tesla Inc.</p>
+                    </div>
+                    <button class="text-textSecondary hover:text-accent">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <div class="text-3xl font-bold">$242.67</div>
+                    <div class="flex items-center mt-1">
+                        <i class="fa-solid fa-arrow-up text-success text-sm mr-1"></i>
+                        <span class="text-success font-medium">+5.12%</span>
+                        <span class="text-textSecondary text-sm ml-2">+$11.82</span>
+                    </div>
+                </div>
+                <div class="h-20" id="chart-tsla"></div>
+            </div>
+
+            <div class="bg-background border border-border rounded-xl p-6 hover:border-danger transition-all cursor-pointer">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">MSFT</h3>
+                        <p class="text-sm text-textSecondary">Microsoft Corp.</p>
+                    </div>
+                    <button class="text-textSecondary hover:text-accent">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <div class="text-3xl font-bold">$412.33</div>
+                    <div class="flex items-center mt-1">
+                        <i class="fa-solid fa-arrow-down text-danger text-sm mr-1"></i>
+                        <span class="text-danger font-medium">-1.23%</span>
+                        <span class="text-textSecondary text-sm ml-2">-$5.13</span>
+                    </div>
+                </div>
+                <div class="h-20" id="chart-msft"></div>
+            </div>
+
+            <div class="bg-background border border-border rounded-xl p-6 hover:border-success transition-all cursor-pointer">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold">NVDA</h3>
+                        <p class="text-sm text-textSecondary">NVIDIA Corp.</p>
+                    </div>
+                    <button class="text-textSecondary hover:text-accent">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <div class="text-3xl font-bold">$875.28</div>
+                    <div class="flex items-center mt-1">
+                        <i class="fa-solid fa-arrow-up text-success text-sm mr-1"></i>
+                        <span class="text-success font-medium">+3.87%</span>
+                        <span class="text-textSecondary text-sm ml-2">+$32.64</span>
+                    </div>
+                </div>
+                <div class="h-20" id="chart-nvda"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="latest-news" class="py-20 bg-background">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-4xl font-bold mb-2">Latest Market News</h2>
+                <p class="text-textSecondary">Stay updated with the latest financial news</p>
+            </div>
+            <a href="#" class="text-accent hover:text-secondary font-medium flex items-center">
+                View All News
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f9b35bcc4f-e7e39163c89888a6f0e7.png" alt="stock market trading floor with traders and digital screens, financial news photography" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">Markets</span>
+                        <span class="text-xs text-textSecondary">2 hours ago</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">Fed Signals Potential Rate Cuts in Q2 2024</h3>
+                    <p class="text-textSecondary mb-4 leading-relaxed">Federal Reserve officials hint at possible interest rate adjustments following recent inflation data, sparking market optimism across major indices.</p>
+                    <div class="flex items-center text-sm text-textSecondary">
+                        <i class="fa-solid fa-building mr-2"></i>
+                        Bloomberg Markets
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/04ebedba6b-14a1373d60c24e5b0a7a.png" alt="tech company office with modern architecture and innovation, business photography" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-xs font-medium text-success bg-success/10 px-3 py-1 rounded-full">Technology</span>
+                        <span class="text-xs text-textSecondary">5 hours ago</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">Tech Giants Report Strong Q4 Earnings</h3>
+                    <p class="text-textSecondary mb-4 leading-relaxed">Major technology companies exceed analyst expectations with robust quarterly results, driven by AI investments and cloud computing growth.</p>
+                    <div class="flex items-center text-sm text-textSecondary">
+                        <i class="fa-solid fa-building mr-2"></i>
+                        Reuters Technology
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/61b63aa0d5-c70893e7c6c23b4a3a5c.png" alt="Dominican Republic stock exchange building exterior, modern architecture, business district" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-xs font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full">DR Market</span>
+                        <span class="text-xs text-textSecondary">1 day ago</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">Dominican Stock Market Reaches New Highs</h3>
+                    <p class="text-textSecondary mb-4 leading-relaxed">BVRD index climbs to record levels as foreign investment increases and local companies show strong performance in tourism and banking sectors.</p>
+                    <div class="flex items-center text-sm text-textSecondary">
+                        <i class="fa-solid fa-building mr-2"></i>
+                        Diario Libre Economía
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="courses-section" class="py-20 bg-surface">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Master Trading with Expert Courses</h2>
+            <p class="text-xl text-textSecondary">Learn from industry professionals and accelerate your trading journey</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-background border border-border rounded-xl overflow-hidden hover:border-accent transition-all group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/307938e908-fd51445283970be66705.png" alt="beginner trader learning basics with laptop and charts, educational setting, modern style" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-success bg-success/10 px-3 py-1 rounded-full">Beginner</span>
+                        <div class="flex items-center text-sm text-textSecondary">
+                            <i class="fa-solid fa-clock mr-1"></i>
+                            8 hours
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Trading Fundamentals</h3>
+                    <p class="text-textSecondary mb-4">Learn the basics of stock trading, market analysis, and risk management strategies for beginners.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Instructor" class="w-8 h-8 rounded-full mr-2">
+                            <span class="text-sm text-textSecondary">John Martinez</span>
+                        </div>
+                        <div class="flex items-center text-accent">
+                            <i class="fa-solid fa-star text-sm mr-1"></i>
+                            <span class="font-medium">4.8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-background border border-border rounded-xl overflow-hidden hover:border-accent transition-all group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/a351506c60-602347078b5814b2fe3c.png" alt="advanced trader analyzing multiple charts and indicators, professional trading setup" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">Intermediate</span>
+                        <div class="flex items-center text-sm text-textSecondary">
+                            <i class="fa-solid fa-clock mr-1"></i>
+                            12 hours
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Technical Analysis Mastery</h3>
+                    <p class="text-textSecondary mb-4">Deep dive into chart patterns, indicators, and technical analysis techniques used by professional traders.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Instructor" class="w-8 h-8 rounded-full mr-2">
+                            <span class="text-sm text-textSecondary">Sarah Chen</span>
+                        </div>
+                        <div class="flex items-center text-accent">
+                            <i class="fa-solid fa-star text-sm mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-background border border-border rounded-xl overflow-hidden hover:border-accent transition-all group">
+                <div class="h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f9a6bebdae-197954277390d6639d01.png" alt="AI and algorithmic trading visualization with code and charts, futuristic trading technology" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full">Advanced</span>
+                        <div class="flex items-center text-sm text-textSecondary">
+                            <i class="fa-solid fa-clock mr-1"></i>
+                            16 hours
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI-Powered Trading Strategies</h3>
+                    <p class="text-textSecondary mb-4">Master algorithmic trading and learn how to leverage AI for market analysis and automated trading systems.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="Instructor" class="w-8 h-8 rounded-full mr-2">
+                            <span class="text-sm text-textSecondary">David Rodriguez</span>
+                        </div>
+                        <div class="flex items-center text-accent">
+                            <i class="fa-solid fa-star text-sm mr-1"></i>
+                            <span class="font-medium">5.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-8 py-4 hover:shadow-xl hover:shadow-accent/30 transition-all text-lg">
+                Explore All Courses
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.plot.ly/plotly-3.1.1.min.js"></script>
+<script>
+window.addEventListener('load', function() {
+    try {
+        const chartConfigs = [
+            { id: 'chart-aapl', color: '#10B981', data: [165, 168, 172, 169, 175, 178, 176, 178.45] },
+            { id: 'chart-tsla', color: '#10B981', data: [220, 225, 230, 228, 235, 238, 240, 242.67] },
+            { id: 'chart-msft', color: '#EF4444', data: [425, 422, 418, 420, 415, 412, 414, 412.33] },
+            { id: 'chart-nvda', color: '#10B981', data: [820, 835, 845, 840, 855, 865, 870, 875.28] }
+        ];
+
+        chartConfigs.forEach(config => {
+            const data = [{
+                type: 'scatter',
+                mode: 'lines',
+                x: [0, 1, 2, 3, 4, 5, 6, 7],
+                y: config.data,
+                line: { color: config.color, width: 2 },
+                fill: 'tozeroy',
+                fillcolor: config.color + '20'
+            }];
+
+            const layout = {
+                margin: { t: 0, r: 0, b: 0, l: 0 },
+                plot_bgcolor: 'transparent',
+                paper_bgcolor: 'transparent',
+                xaxis: { visible: false },
+                yaxis: { visible: false },
+                showlegend: false,
+                hovermode: false
+            };
+
+            const plotConfig = {
+                responsive: true,
+                displayModeBar: false,
+                displaylogo: false
+            };
+
+            Plotly.newPlot(config.id, data, layout, plotConfig);
+        });
+    } catch(e) {
+        console.error('Chart error:', e);
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.opacity = i === index ? '1' : '0';
+            slide.classList.toggle('active', i === index);
+        });
+        dots.forEach((dot, i) => {
+            dot.style.opacity = i === index ? '1' : '0.3';
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    document.querySelector('.carousel-next').addEventListener('click', nextSlide);
+    document.querySelector('.carousel-prev').addEventListener('click', prevSlide);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    setInterval(nextSlide, 5000);
+
+    const timeframeBtns = document.querySelectorAll('.timeframe-btn');
+    timeframeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            timeframeBtns.forEach(b => {
+                b.classList.remove('active', 'bg-accent', 'text-white');
+                b.classList.add('text-textSecondary');
+            });
+            this.classList.add('active', 'bg-accent', 'text-white');
+            this.classList.remove('text-textSecondary');
+        });
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Markets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.plot.ly/plotly-3.1.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#F0B323',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141824',
+                        text: '#E5E7EB',
+                        border: '#1F2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text font-sans">
+
+<nav id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Quantum Chart</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Trading Copilot</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Brokers</a>
+                    <a href="#" class="text-white border-b-2 border-accent pb-1 text-sm font-medium">Stock Markets</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">E-learning</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Q&A</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Forum</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">News</a>
+                    <a href="#" class="text-text hover:text-white transition text-sm font-medium">Plans & Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-text hover:text-white transition">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="text-text hover:text-white transition">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <a href="#" class="text-sm text-accent font-semibold">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section id="market-overview-section" class="bg-background">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        
+        <div id="market-header" class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Stock Markets</h1>
+                    <p class="text-text">Real-time market data powered by AI</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <select class="bg-surface border border-border rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-accent appearance-none">
+                            <option value="DO" selected>Dominican Republic</option>
+                            <option value="US">United States</option>
+                            <option value="MX">Mexico</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AR">Argentina</option>
+                            <option value="CO">Colombia</option>
+                        </select>
+                        <i class="fas fa-globe absolute left-3 top-1/2 transform -translate-y-1/2 text-text"></i>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-text text-xs"></i>
+                    </div>
+                    <button class="flex items-center space-x-2 bg-surface border border-border rounded-lg px-4 py-2 text-white hover:border-accent transition">
+                        <i class="fas fa-star text-accent"></i>
+                        <span class="text-sm">Watchlist</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="search-bar" class="relative">
+                <input type="text" placeholder="Search stocks, indices, or sectors..." class="w-full bg-surface border border-border rounded-lg pl-12 pr-4 py-3 text-white focus:outline-none focus:border-accent">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-text"></i>
+            </div>
+        </div>
+        
+        <div id="market-tabs" class="bg-surface border border-border rounded-lg mb-6">
+            <div class="flex overflow-x-auto">
+                <button class="px-6 py-3 text-sm font-medium text-white border-b-2 border-accent whitespace-nowrap">Market Overview</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Indices</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Banking</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Energy</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Technology</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Real Estate</button>
+                <button class="px-6 py-3 text-sm font-medium text-text hover:text-white whitespace-nowrap">Consumer Goods</button>
+            </div>
+        </div>
+        
+        <div id="market-movers" class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-white">Top Movers</h2>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 bg-success/20 text-success rounded text-xs font-semibold">Gainers</button>
+                    <button class="px-3 py-1 bg-surface text-text rounded text-xs font-semibold hover:bg-danger/20 hover:text-danger">Losers</button>
+                    <button class="px-3 py-1 bg-surface text-text rounded text-xs font-semibold hover:bg-accent/20 hover:text-accent">Most Active</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-surface border border-border rounded-lg p-4 hover:border-accent transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-gradient-to-br from-primary to-blue-700 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">BPD</span>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">Banco Popular</div>
+                                <div class="text-xs text-text">BPD.DO</div>
+                            </div>
+                        </div>
+                        <i class="far fa-star text-text hover:text-accent cursor-pointer"></i>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-2xl font-bold text-white">$42.50</div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-success text-sm font-semibold">+2.35%</span>
+                            <span class="text-success text-sm">+0.98</span>
+                        </div>
+                    </div>
+                    <div class="h-16" id="chart-bpd"></div>
+                </div>
+                
+                <div class="bg-surface border border-border rounded-lg p-4 hover:border-accent transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-gradient-to-br from-secondary to-red-800 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">EDE</span>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">EDE Este</div>
+                                <div class="text-xs text-text">EDE.DO</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-star text-accent cursor-pointer"></i>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-2xl font-bold text-white">$28.75</div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-success text-sm font-semibold">+4.12%</span>
+                            <span class="text-success text-sm">+1.14</span>
+                        </div>
+                    </div>
+                    <div class="h-16" id="chart-ede"></div>
+                </div>
+                
+                <div class="bg-surface border border-border rounded-lg p-4 hover:border-accent transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-gradient-to-br from-accent to-yellow-600 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">BHD</span>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">BHD León</div>
+                                <div class="text-xs text-text">BHD.DO</div>
+                            </div>
+                        </div>
+                        <i class="far fa-star text-text hover:text-accent cursor-pointer"></i>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-2xl font-bold text-white">$55.20</div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-success text-sm font-semibold">+1.85%</span>
+                            <span class="text-success text-sm">+1.00</span>
+                        </div>
+                    </div>
+                    <div class="h-16" id="chart-bhd"></div>
+                </div>
+                
+                <div class="bg-surface border border-border rounded-lg p-4 hover:border-accent transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-gradient-to-br from-success to-green-700 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">CXA</span>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">Cervecería</div>
+                                <div class="text-xs text-text">CXA.DO</div>
+                            </div>
+                        </div>
+                        <i class="far fa-star text-text hover:text-accent cursor-pointer"></i>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-2xl font-bold text-white">$38.90</div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-success text-sm font-semibold">+3.21%</span>
+                            <span class="text-success text-sm">+1.21</span>
+                        </div>
+                    </div>
+                    <div class="h-16" id="chart-cxa"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <div id="watchlist-panel" class="lg:col-span-1 bg-surface border border-border rounded-lg">
+                <div class="flex items-center justify-between p-4 border-b border-border">
+                    <h3 class="text-lg font-bold text-white">My Watchlist</h3>
+                    <button class="text-accent hover:text-accent/80">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="divide-y divide-border">
+                    <div class="p-4 hover:bg-background cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-white font-semibold">BPD.DO</span>
+                                <span class="text-xs text-text">Banco Popular</span>
+                            </div>
+                            <i class="fas fa-star text-accent text-sm"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white font-bold">$42.50</span>
+                            <span class="text-success text-sm">+2.35%</span>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-background cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-white font-semibold">EDE.DO</span>
+                                <span class="text-xs text-text">EDE Este</span>
+                            </div>
+                            <i class="fas fa-star text-accent text-sm"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white font-bold">$28.75</span>
+                            <span class="text-success text-sm">+4.12%</span>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-background cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-white font-semibold">CXA.DO</span>
+                                <span class="text-xs text-text">Cervecería</span>
+                            </div>
+                            <i class="fas fa-star text-accent text-sm"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white font-bold">$38.90</span>
+                            <span class="text-success text-sm">+3.21%</span>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-background cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-white font-semibold">PRM.DO</span>
+                                <span class="text-xs text-text">Promerica</span>
+                            </div>
+                            <i class="fas fa-star text-accent text-sm"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white font-bold">$31.20</span>
+                            <span class="text-danger text-sm">-1.24%</span>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-background cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-white font-semibold">AES.DO</span>
+                                <span class="text-xs text-text">AES Dominicana</span>
+                            </div>
+                            <i class="fas fa-star text-accent text-sm"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white font-bold">$22.45</span>
+                            <span class="text-success text-sm">+0.89%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="featured-stock" class="lg:col-span-2 bg-surface border border-border rounded-lg">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary to-blue-700 rounded-xl flex items-center justify-center">
+                                <span class="text-white font-bold text-lg">BPD</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">Banco Popular Dominicano</h3>
+                                <div class="flex items-center space-x-3 mt-1">
+                                    <span class="text-text">BPD.DO</span>
+                                    <span class="text-xs bg-primary/30 text-primary px-2 py-1 rounded">Banking</span>
+                                    <span class="text-xs bg-success/30 text-success px-2 py-1 rounded">Large Cap</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold text-white mb-1">$42.50</div>
+                            <div class="flex items-center justify-end space-x-2">
+                                <span class="text-success font-semibold">+2.35%</span>
+                                <span class="text-success">+0.98</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2 mb-4">
+                        <button class="px-3 py-1 bg-accent text-background rounded text-xs font-semibold">1D</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">5D</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">1W</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">1M</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">YTD</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">1Y</button>
+                        <button class="px-3 py-1 bg-surface border border-border text-text rounded text-xs font-semibold hover:bg-background">Max</button>
+                    </div>
+                    
+                    <div class="h-64" id="chart-featured"></div>
+                    
+                    <div class="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-border">
+                        <div>
+                            <div class="text-xs text-text mb-1">Open</div>
+                            <div class="text-white font-semibold">$41.52</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">High</div>
+                            <div class="text-white font-semibold">$42.85</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">Low</div>
+                            <div class="text-white font-semibold">$41.30</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">Volume</div>
+                            <div class="text-white font-semibold">1.2M</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">Market Cap</div>
+                            <div class="text-white font-semibold">$8.5B</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">P/E Ratio</div>
+                            <div class="text-white font-semibold">15.2</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">52W High</div>
+                            <div class="text-white font-semibold">$45.20</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-text mb-1">52W Low</div>
+                            <div class="text-white font-semibold">$35.10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="market-table" class="bg-surface border border-border rounded-lg">
+            <div class="p-4 border-b border-border">
+                <h3 class="text-lg font-bold text-white">All Stocks</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="text-left p-4 text-xs font-semibold text-text uppercase">Symbol</th>
+                            <th class="text-left p-4 text-xs font-semibold text-text uppercase">Name</th>
+                            <th class="text-right p-4 text-xs font-semibold text-text uppercase">Price</th>
+                            <th class="text-right p-4 text-xs font-semibold text-text uppercase">Change</th>
+                            <th class="text-right p-4 text-xs font-semibold text-text uppercase">Change %</th>
+                            <th class="text-right p-4 text-xs font-semibold text-text uppercase">Volume</th>
+                            <th class="text-right p-4 text-xs font-semibold text-text uppercase">Market Cap</th>
+                            <th class="text-center p-4 text-xs font-semibold text-text uppercase">Chart</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="far fa-star text-text hover:text-accent"></i>
+                                    <span class="text-white font-semibold">BPD.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">Banco Popular Dominicano</td>
+                            <td class="p-4 text-right text-white font-semibold">$42.50</td>
+                            <td class="p-4 text-right text-success">+0.98</td>
+                            <td class="p-4 text-right text-success font-semibold">+2.35%</td>
+                            <td class="p-4 text-right text-text">1.2M</td>
+                            <td class="p-4 text-right text-text">$8.5B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-1"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-star text-accent"></i>
+                                    <span class="text-white font-semibold">EDE.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">EDE Este</td>
+                            <td class="p-4 text-right text-white font-semibold">$28.75</td>
+                            <td class="p-4 text-right text-success">+1.14</td>
+                            <td class="p-4 text-right text-success font-semibold">+4.12%</td>
+                            <td class="p-4 text-right text-text">850K</td>
+                            <td class="p-4 text-right text-text">$5.2B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-2"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="far fa-star text-text hover:text-accent"></i>
+                                    <span class="text-white font-semibold">BHD.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">BHD León</td>
+                            <td class="p-4 text-right text-white font-semibold">$55.20</td>
+                            <td class="p-4 text-right text-success">+1.00</td>
+                            <td class="p-4 text-right text-success font-semibold">+1.85%</td>
+                            <td class="p-4 text-right text-text">620K</td>
+                            <td class="p-4 text-right text-text">$12.3B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-3"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="far fa-star text-text hover:text-accent"></i>
+                                    <span class="text-white font-semibold">CXA.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">Cervecería Nacional Dominicana</td>
+                            <td class="p-4 text-right text-white font-semibold">$38.90</td>
+                            <td class="p-4 text-right text-success">+1.21</td>
+                            <td class="p-4 text-right text-success font-semibold">+3.21%</td>
+                            <td class="p-4 text-right text-text">980K</td>
+                            <td class="p-4 text-right text-text">$6.8B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-4"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-star text-accent"></i>
+                                    <span class="text-white font-semibold">PRM.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">Banco Promerica</td>
+                            <td class="p-4 text-right text-white font-semibold">$31.20</td>
+                            <td class="p-4 text-right text-danger">-0.39</td>
+                            <td class="p-4 text-right text-danger font-semibold">-1.24%</td>
+                            <td class="p-4 text-right text-text">540K</td>
+                            <td class="p-4 text-right text-text">$4.1B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-5"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-background cursor-pointer">
+                            <td class="p-4">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-star text-accent"></i>
+                                    <span class="text-white font-semibold">AES.DO</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-text">AES Dominicana</td>
+                            <td class="p-4 text-right text-white font-semibold">$22.45</td>
+                            <td class="p-4 text-right text-success">+0.20</td>
+                            <td class="p-4 text-right text-success font-semibold">+0.89%</td>
+                            <td class="p-4 text-right text-text">720K</td>
+                            <td class="p-4 text-right text-text">$3.8B</td>
+                            <td class="p-4">
+                                <div class="h-8 w-20 mx-auto" id="mini-chart-6"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div class="lg:col-span-1">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Quantum Chart</span>
+                </div>
+                <p class="text-text text-sm mb-6">AI-powered trading platform empowering traders in the Dominican Republic and beyond.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-background hover:bg-primary rounded-lg flex items-center justify-center text-text hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Features</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Trading Copilot</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Brokers</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Stock Markets</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">E-learning</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Q&A</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Forum</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Market Analysis</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Portfolio Management</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Risk Assessment</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Trading Signals</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">API Access</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Custom Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Help Center</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Contact Us</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">FAQs</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Community Guidelines</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Privacy Policy</a></li>
+                    <li><a href="#" class="text-text hover:text-accent transition text-sm">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                <p class="text-text text-sm mb-4">Subscribe to get market insights and trading tips.</p>
+                <div class="space-y-3">
+                    <input type="email" placeholder="Your email" class="w-full bg-background border border-border rounded-lg px-4 py-2 text-text focus:outline-none focus:border-accent transition">
+                    <button class="w-full bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white py-2 rounded-lg font-semibold transition">
+                        Subscribe
+                    </button>
+                </div>
+                <div class="mt-6">
+                    <h5 class="text-white font-semibold mb-2 text-sm">Contact</h5>
+                    <p class="text-text text-sm mb-1"><i class="fas fa-envelope mr-2"></i>support@quantumchart.com</p>
+                    <p class="text-text text-sm"><i class="fas fa-phone mr-2"></i>+1 (809) 555-0100</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <p class="text-text text-sm mb-4 md:mb-0">© 2024 Quantum Chart. All rights reserved.</p>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Legal</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Privacy</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Security</a>
+                    <a href="#" class="text-text hover:text-accent transition text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+    try {
+        const chartConfig = {
+            responsive: true,
+            displayModeBar: false,
+            displaylogo: false
+        };
+        
+        const layoutBase = {
+            margin: { t: 0, r: 0, b: 0, l: 0 },
+            plot_bgcolor: '#141824',
+            paper_bgcolor: '#141824',
+            xaxis: { visible: false },
+            yaxis: { visible: false },
+            showlegend: false
+        };
+        
+        const data1 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4, 5, 6],
+            y: [40, 41, 40.5, 42, 41.8, 42.3, 42.5],
+            line: { color: '#10B981', width: 2 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.1)'
+        }];
+        
+        const data2 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4, 5, 6],
+            y: [27, 27.5, 28, 27.8, 28.2, 28.5, 28.75],
+            line: { color: '#10B981', width: 2 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.1)'
+        }];
+        
+        const data3 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4, 5, 6],
+            y: [54, 54.5, 54.3, 55, 54.8, 55.1, 55.2],
+            line: { color: '#10B981', width: 2 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.1)'
+        }];
+        
+        const data4 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4, 5, 6],
+            y: [37, 37.5, 38, 37.8, 38.5, 38.7, 38.9],
+            line: { color: '#10B981', width: 2 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.1)'
+        }];
+        
+        Plotly.newPlot('chart-bpd', data1, layoutBase, chartConfig);
+        Plotly.newPlot('chart-ede', data2, layoutBase, chartConfig);
+        Plotly.newPlot('chart-bhd', data3, layoutBase, chartConfig);
+        Plotly.newPlot('chart-cxa', data4, layoutBase, chartConfig);
+        
+        const featuredData = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: ['09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+            y: [40, 40.5, 41, 40.8, 41.5, 41.8, 41.6, 42, 42.2, 41.9, 42.3, 42.5],
+            line: { color: '#10B981', width: 3 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.1)'
+        }];
+        
+        const featuredLayout = {
+            ...layoutBase,
+            margin: { t: 10, r: 20, b: 30, l: 40 },
+            xaxis: { visible: true, color: '#9CA3AF', gridcolor: '#1F2937' },
+            yaxis: { visible: true, color: '#9CA3AF', gridcolor: '#1F2937' }
+        };
+        
+        Plotly.newPlot('chart-featured', featuredData, featuredLayout, chartConfig);
+        
+        const miniData1 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [40, 41, 40.5, 42, 42.5],
+            line: { color: '#10B981', width: 1.5 }
+        }];
+        
+        const miniData2 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [27, 27.5, 28, 28.2, 28.75],
+            line: { color: '#10B981', width: 1.5 }
+        }];
+        
+        const miniData3 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [54, 54.5, 54.8, 55, 55.2],
+            line: { color: '#10B981', width: 1.5 }
+        }];
+        
+        const miniData4 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [37, 37.8, 38.2, 38.5, 38.9],
+            line: { color: '#10B981', width: 1.5 }
+        }];
+        
+        const miniData5 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [31.8, 31.5, 31.3, 31.4, 31.2],
+            line: { color: '#EF4444', width: 1.5 }
+        }];
+        
+        const miniData6 = [{
+            type: 'scatter',
+            mode: 'lines',
+            x: [0, 1, 2, 3, 4],
+            y: [22.2, 22.3, 22.35, 22.4, 22.45],
+            line: { color: '#10B981', width: 1.5 }
+        }];
+        
+        Plotly.newPlot('mini-chart-1', miniData1, layoutBase, chartConfig);
+        Plotly.newPlot('mini-chart-2', miniData2, layoutBase, chartConfig);
+        Plotly.newPlot('mini-chart-3', miniData3, layoutBase, chartConfig);
+        Plotly.newPlot('mini-chart-4', miniData4, layoutBase, chartConfig);
+        Plotly.newPlot('mini-chart-5', miniData5, layoutBase, chartConfig);
+        Plotly.newPlot('mini-chart-6', miniData6, layoutBase, chartConfig);
+        
+    } catch(e) {
+        console.error('Chart error:', e);
+    }
+});
+</script>
+
+</body>
+</html>
