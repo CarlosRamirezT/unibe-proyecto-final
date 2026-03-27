@@ -1,0 +1,15 @@
+:root {
+  --focus-ring: 0 0 0 3px rgba(0, 82, 180, 0.35);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 0.5rem;
+}
