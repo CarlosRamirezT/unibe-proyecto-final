@@ -2,6 +2,7 @@
   const routes = {
     home: "./index.html",
     features: "./index.html",
+    "quantum chart": "./index.html",
     "stock markets": "./markets.html",
     brokers: "./brokers.html",
     "e-learning": "./courses.html",
@@ -14,6 +15,17 @@
     "trading forum": "./forum.html",
     pricing: "./pricing.html",
     "premium plans": "./pricing.html",
+    "help center": "./qa.html",
+    "contact us": "./qa.html",
+    support: "./qa.html",
+    "privacy policy": "./qa.html",
+    "terms of service": "./qa.html",
+    "cookie policy": "./qa.html",
+    disclaimer: "./qa.html",
+    "market analysis": "./markets.html",
+    "portfolio tracking": "./dashboard.html",
+    "api access": "./pricing.html",
+    subscribe: "./news.html",
     login: "./login.html",
     signup: "./signup.html",
     "sign up": "./signup.html",
@@ -120,15 +132,54 @@
       const text = normalize(anchor.textContent);
       const mapped = routeForText(text, mergedRoutes) || inferRouteFromText(text);
       const hasPlaceholderHref = href === "#" || href === "" || href == null;
+      const iconMapped = inferSocialHref(anchor);
 
       if (hasPlaceholderHref && mapped) {
         anchor.setAttribute("href", mapped);
       }
 
+      if (hasPlaceholderHref && iconMapped) {
+        anchor.setAttribute("href", iconMapped);
+        anchor.setAttribute("target", "_blank");
+        anchor.setAttribute("rel", "noreferrer noopener");
+      }
+
       if (hasPlaceholderHref && !text && anchor.closest("#header")) {
         anchor.setAttribute("href", "./index.html");
       }
+
+      if (hasPlaceholderHref && anchor.closest("#footer") && !anchor.getAttribute("href")) {
+        anchor.setAttribute("href", "./index.html#footer");
+      }
+
+      if ((anchor.getAttribute("href") === "#" || anchor.getAttribute("href") === "") && anchor.closest("#footer")) {
+        anchor.setAttribute("href", "./index.html#footer");
+      }
     });
+  }
+
+  function inferSocialHref(anchor) {
+    const icon = anchor.querySelector("i");
+    if (!icon) {
+      return null;
+    }
+    const classes = icon.className;
+    if (classes.includes("fa-facebook")) {
+      return "https://facebook.com";
+    }
+    if (classes.includes("fa-twitter")) {
+      return "https://x.com";
+    }
+    if (classes.includes("fa-instagram")) {
+      return "https://instagram.com";
+    }
+    if (classes.includes("fa-linkedin")) {
+      return "https://linkedin.com";
+    }
+    if (classes.includes("fa-youtube")) {
+      return "https://youtube.com";
+    }
+    return null;
   }
 
   function wireButtons() {
