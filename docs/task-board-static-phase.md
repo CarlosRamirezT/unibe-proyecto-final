@@ -26,7 +26,7 @@
 - [x] Keep active nav state highlighted per current page
 
 ## Pending For Next Iteration
-- [ ] Extract per-page inline scripts into dedicated files under `src/js/pages/`
+- [x] Extract per-page inline scripts into dedicated files under `src/js/pages/`
 - [ ] Normalize all footer and utility links (currently many remain placeholders)
 - [ ] Download remote images into `src/assets/images/` and replace external URLs
 - [ ] Add responsive nav menu behavior for mobile

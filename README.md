@@ -14,7 +14,16 @@ Base inicial estatica del proyecto de trading con IA.
 	├── css/
 	│   └── main.css
 	├── js/
-	│   └── navigation.js
+	│   ├── navigation.js
+	│   └── pages/
+	│       ├── index.js
+	│       ├── markets.js
+	│       ├── brokers.js
+	│       ├── login.js
+	│       ├── signup.js
+	│       ├── pricing.js
+	│       ├── dashboard.js
+	│       └── copilot.js
 	└── html/
 		├── index.html
 		├── markets.html
@@ -48,8 +57,14 @@ Base inicial estatica del proyecto de trading con IA.
 ## Navegacion
 
 - Navegacion global centralizada en `src/js/navigation.js`.
-- Enlaces del navbar y CTAs principales resueltos por mapeo de texto.
+- Enlaces del navbar, CTAs y enlaces utility/footer resueltos por mapeo de texto.
 - Todas las vistas cargan `../css/main.css` y `../js/navigation.js`.
+
+## Scripts por vista
+
+- Se extrajo la logica inline a archivos dedicados en `src/js/pages/`.
+- Vistas con script de pagina: landing, markets, brokers, login, signup, pricing, dashboard y copilot.
+- Esto deja las vistas HTML mas limpias y facilita la migracion posterior a React.
 
 ## Ejecucion local
 
