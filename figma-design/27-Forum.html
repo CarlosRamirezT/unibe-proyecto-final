@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-accent font-medium border-b-2 border-accent pb-1">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Trading Copilot</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textPrimary font-medium px-4 py-2 transition-colors">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="forum-hero" class="bg-gradient-to-r from-primary via-accent to-secondary h-[280px] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ec4995c265-f59382ddc9c8f849d7c8.png" alt="community discussion forum, people networking, trading community, modern tech background" />
+    </div>
+    <div class="container mx-auto px-6 h-full flex items-center relative z-10">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl font-bold mb-4">Trading Community Forum</h1>
+            <p class="text-xl text-white/90 mb-6">Join thousands of traders sharing insights, strategies, and market analysis. Connect, learn, and grow together.</p>
+            <button class="bg-white text-primary font-semibold rounded-lg px-8 py-3 hover:shadow-xl transition-all flex items-center">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Create New Thread
+            </button>
+        </div>
+    </div>
+</section>
+
+<div class="bg-surface border-b border-border sticky top-[73px] z-40">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <button class="bg-accent text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center">
+                    <i class="fa-solid fa-layer-group mr-2"></i>
+                    All Categories
+                </button>
+                <button class="bg-surface border border-border text-textSecondary hover:border-accent px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-comments mr-2"></i>
+                    General
+                </button>
+                <button class="bg-surface border border-border text-textSecondary hover:border-accent px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-chart-line mr-2"></i>
+                    DR Stocks
+                </button>
+                <button class="bg-surface border border-border text-textSecondary hover:border-accent px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-lightbulb mr-2"></i>
+                    Strategies
+                </button>
+                <button class="bg-surface border border-border text-textSecondary hover:border-accent px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-headset mr-2"></i>
+                    Platform Support
+                </button>
+                <button class="bg-surface border border-border text-textSecondary hover:border-accent px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <i class="fa-solid fa-coffee mr-2"></i>
+                    Off-topic
+                </button>
+            </div>
+            <div class="flex items-center space-x-3">
+                <select class="bg-surface border border-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-accent text-sm">
+                    <option>Latest Activity</option>
+                    <option>Most Replies</option>
+                    <option>Most Views</option>
+                    <option>Newest</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-3">
+            <div id="pinned-announcements" class="mb-6">
+                <div class="bg-gradient-to-r from-secondary/10 to-accent/10 border border-secondary/30 rounded-xl p-5 mb-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-secondary/20 rounded-full p-3">
+                            <i class="fa-solid fa-thumbtack text-secondary text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold">PINNED</span>
+                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs">Announcement</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent cursor-pointer transition-colors">Welcome to Quantum Chart Forum - Community Guidelines</h3>
+                            <p class="text-textSecondary mb-3">Please read our community guidelines before posting. We're building a respectful and helpful trading community.</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center">
+                                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="moderator" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-textSecondary">Admin</span>
+                                        <span class="bg-secondary px-2 py-0.5 rounded text-xs text-white ml-2">MOD</span>
+                                    </div>
+                                    <span class="text-textSecondary">Jan 15, 2024</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>42</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>8.2k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="thread-list" class="space-y-4">
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">General</span>
+                                <span class="bg-success/20 text-success px-2 py-0.5 rounded text-xs flex items-center">
+                                    <i class="fa-solid fa-fire mr-1"></i>
+                                    Hot
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Best strategies for trading volatile Dominican stocks?</h3>
+                            <p class="text-textSecondary mb-3">I've noticed some local stocks have high volatility. What are your go-to strategies for capitalizing on these movements while managing risk?</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Alex Thompson</span>
+                                    <span class="bg-accent/20 text-accent px-2 py-0.5 rounded text-xs flex items-center">
+                                        <i class="fa-solid fa-medal mr-1"></i>
+                                        Expert
+                                    </span>
+                                    <span class="text-textSecondary">3 hours ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>28</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>1.4k</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs">DR Stocks</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">BVRD market analysis - Q1 2024 outlook</h3>
+                            <p class="text-textSecondary mb-3">Sharing my analysis on the Dominican market for Q1. Looking at key sectors and potential opportunities. What are your thoughts?</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Maria Rodriguez</span>
+                                    <span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-xs flex items-center">
+                                        <i class="fa-solid fa-star mr-1"></i>
+                                        Contributor
+                                    </span>
+                                    <span class="text-textSecondary">5 hours ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>19</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>892</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>23</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-success/20 text-success px-3 py-1 rounded-full text-xs">Strategies</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">AI signals vs manual analysis - my 6 month results</h3>
+                            <p class="text-textSecondary mb-3">After 6 months of split testing, here are my findings comparing AI-powered signals with traditional technical analysis. Surprising results!</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">David Chen</span>
+                                    <span class="text-textSecondary">8 hours ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>45</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>2.3k</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>67</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-xs">Platform Support</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">How to set up custom alerts for DR stocks?</h3>
+                            <p class="text-textSecondary mb-3">Need help configuring price alerts for local stocks. Is there a way to get notifications for specific price movements?</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Lisa Anderson</span>
+                                    <span class="text-textSecondary">1 day ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>12</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>524</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-9.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs">DR Stocks</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Banking sector outlook for 2024</h3>
+                            <p class="text-textSecondary mb-3">Discussion on major Dominican banks and their stock performance. Interest rate impact and growth projections.</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Roberto Perez</span>
+                                    <span class="text-textSecondary">1 day ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>34</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>1.8k</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>41</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">General</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Weekly trading journal - share your wins and lessons</h3>
+                            <p class="text-textSecondary mb-3">Let's share our weekly performance, what worked, what didn't. Learning from each other's experiences.</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Michael Torres</span>
+                                    <span class="text-textSecondary">2 days ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>56</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>3.1k</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>89</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent transition-all cursor-pointer">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-7.jpg" alt="user" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="bg-textSecondary/20 text-textSecondary px-3 py-1 rounded-full text-xs">Off-topic</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Best trading setup - desk, monitors, and tools</h3>
+                            <p class="text-textSecondary mb-3">Show off your trading stations! What's your setup like? Multiple monitors? Standing desk? Share photos and recommendations.</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-textSecondary">Sarah Johnson</span>
+                                    <span class="text-textSecondary">2 days ago</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-textSecondary">
+                                    <span><i class="fa-solid fa-comment mr-1"></i>38</span>
+                                    <span><i class="fa-solid fa-eye mr-1"></i>1.6k</span>
+                                    <span><i class="fa-solid fa-heart mr-1"></i>52</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-8">
+                <button class="bg-surface border border-border text-textPrimary hover:border-accent px-8 py-3 rounded-lg font-medium transition-all flex items-center">
+                    Load More Threads
+                    <i class="fa-solid fa-chevron-down ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div id="new-post-cta" class="bg-gradient-to-br from-primary to-accent rounded-xl p-6 mb-6 text-center">
+                <i class="fa-solid fa-pen-to-square text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Start a Discussion</h3>
+                <p class="text-white/90 text-sm mb-4">Share your insights with the community</p>
+                <button class="w-full bg-white text-primary font-semibold rounded-lg px-6 py-3 hover:shadow-xl transition-all">
+                    Create Thread
+                </button>
+            </div>
+
+            <div id="forum-stats" class="bg-surface border border-border rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-chart-simple text-accent mr-2"></i>
+                    Forum Statistics
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-message text-primary mr-2"></i>
+                            <span class="text-sm">Total Threads</span>
+                        </div>
+                        <span class="font-bold">8,542</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-comment text-success mr-2"></i>
+                            <span class="text-sm">Total Posts</span>
+                        </div>
+                        <span class="font-bold">124,387</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-users text-accent mr-2"></i>
+                            <span class="text-sm">Active Members</span>
+                        </div>
+                        <span class="font-bold">12,845</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-user-plus text-secondary mr-2"></i>
+                            <span class="text-sm">Online Now</span>
+                        </div>
+                        <span class="font-bold text-success">342</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="top-contributors" class="bg-surface border border-border rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-trophy text-success mr-2"></i>
+                    Top Contributors
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="contributor" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm">Carlos Martinez</h4>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="bg-accent/20 text-accent px-2 py-0.5 rounded text-xs flex items-center">
+                                    <i class="fa-solid fa-medal mr-1"></i>
+                                    Expert
+                                </span>
+                                <span class="text-xs text-textSecondary">1,247 posts</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-success font-bold">2,845</div>
+                            <div class="text-xs text-textSecondary">reputation</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="contributor" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm">Alex Thompson</h4>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="bg-accent/20 text-accent px-2 py-0.5 rounded text-xs flex items-center">
+                                    <i class="fa-solid fa-medal mr-1"></i>
+                                    Expert
+                                </span>
+                                <span class="text-xs text-textSecondary">982 posts</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-success font-bold">2,124</div>
+                            <div class="text-xs text-textSecondary">reputation</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="contributor" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm">Maria Rodriguez</h4>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-xs flex items-center">
+                                    <i class="fa-solid fa-star mr-1"></i>
+                                    Contributor
+                                </span>
+                                <span class="text-xs text-textSecondary">756 posts</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-success font-bold">1,892</div>
+                            <div class="text-xs text-textSecondary">reputation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trending-topics" class="bg-surface border border-border rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-fire text-secondary mr-2"></i>
+                    Trending Topics
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#AITrading</span>
+                        <span class="text-xs text-textSecondary">342 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#DRMarket</span>
+                        <span class="text-xs text-textSecondary">287 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#TechnicalAnalysis</span>
+                        <span class="text-xs text-textSecondary">215 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#BankingStocks</span>
+                        <span class="text-xs text-textSecondary">198 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#RiskManagement</span>
+                        <span class="text-xs text-textSecondary">176 posts</span>
+                    </div>
+                    <div class="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity">
+                        <span class="text-sm">#SwingTrading</span>
+                        <span class="text-xs text-textSecondary">154 posts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="forum-rules" class="bg-surface border border-border rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-shield-halved text-accent mr-2"></i>
+                    Forum Rules
+                </h3>
+                <ul class="space-y-2 text-sm text-textSecondary">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-success mr-2 mt-1"></i>
+                        <span>Be respectful and professional</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-success mr-2 mt-1"></i>
+                        <span>No spam or self-promotion</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-success mr-2 mt-1"></i>
+                        <span>Stay on topic in categories</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-success mr-2 mt-1"></i>
+                        <span>No financial advice disclaimers</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-success mr-2 mt-1"></i>
+                        <span>Report inappropriate content</span>
+                    </li>
+                </ul>
+                <button class="w-full mt-4 bg-background border border-border text-textPrimary hover:border-accent px-4 py-2 rounded-lg text-sm transition-all">
+                    Read Full Guidelines
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

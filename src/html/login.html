@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors flex items-center">
+                            Features
+                            <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textPrimary font-medium border-b-2 border-accent px-4 py-2 transition-colors">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="login-section" class="py-16 min-h-[800px] flex items-center justify-center bg-gradient-to-b from-background to-surface">
+    <div class="container mx-auto px-6">
+        <div class="max-w-md mx-auto">
+            <div class="bg-surface border border-border rounded-2xl p-10 shadow-xl">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold mb-2">Welcome Back</h1>
+                    <p class="text-textSecondary">Sign in to continue trading smarter</p>
+                </div>
+
+                <form id="login-form" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-2">Email or Username</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                <i class="fa-regular fa-user text-textSecondary"></i>
+                            </div>
+                            <input type="text" id="email" class="w-full bg-background border border-border rounded-lg pl-12 pr-4 py-3 text-white placeholder-textSecondary focus:outline-none focus:border-accent transition-colors" placeholder="Enter your email or username" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium mb-2">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                <i class="fa-solid fa-lock text-textSecondary"></i>
+                            </div>
+                            <input type="password" id="password" class="w-full bg-background border border-border rounded-lg pl-12 pr-12 py-3 text-white placeholder-textSecondary focus:outline-none focus:border-accent transition-colors" placeholder="Enter your password" required>
+                            <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-4 text-textSecondary hover:text-textPrimary">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="w-4 h-4 bg-background border border-border rounded text-accent focus:ring-accent focus:ring-2">
+                            <span class="ml-2 text-sm text-textSecondary">Remember me</span>
+                        </label>
+                        <a href="#" class="text-sm text-accent hover:text-blue-400 transition-colors">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg py-3 hover:shadow-lg hover:shadow-accent/30 transition-all">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="mt-8">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-border"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-surface text-textSecondary">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-3 gap-3">
+                        <button class="flex items-center justify-center bg-background border border-border rounded-lg py-3 hover:border-accent transition-all">
+                            <i class="fa-brands fa-google text-xl text-textPrimary"></i>
+                        </button>
+                        <button class="flex items-center justify-center bg-background border border-border rounded-lg py-3 hover:border-accent transition-all">
+                            <i class="fa-brands fa-microsoft text-xl text-textPrimary"></i>
+                        </button>
+                        <button class="flex items-center justify-center bg-background border border-border rounded-lg py-3 hover:border-accent transition-all">
+                            <i class="fa-brands fa-apple text-xl text-textPrimary"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center space-y-3">
+                    <p class="text-textSecondary">
+                        Don't have an account? 
+                        <a href="#" class="text-accent hover:text-blue-400 font-medium transition-colors">Sign up</a>
+                    </p>
+                    <p class="text-textSecondary">
+                        <a href="#" class="text-accent hover:text-blue-400 font-medium transition-colors">View Plans & Pricing</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm text-textSecondary">
+                    By signing in, you agree to our 
+                    <a href="#" class="text-accent hover:text-blue-400">Terms of Service</a> and 
+                    <a href="#" class="text-accent hover:text-blue-400">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/pages/login.js" defer></script>
+<script src="../js/navigation.js" defer></script>
+</body>
+</html>

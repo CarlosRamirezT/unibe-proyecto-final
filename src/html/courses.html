@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors flex items-center">
+                            Features
+                            <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-accent font-medium border-b-2 border-accent pb-1">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textPrimary font-medium px-4 py-2 transition-colors">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="hero-banner" class="bg-gradient-to-r from-primary via-accent to-secondary h-[280px] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img class="w-full h-full object-cover" src="../assets/images/c9f828cf2c-54a6d0c7dc13d3b59a75.png" alt="abstract financial education background with charts, books, digital learning elements, modern technology" />
+    </div>
+    <div class="container mx-auto px-6 h-full flex items-center relative z-10">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl font-bold mb-4">Master Trading with AI-Powered Learning</h1>
+            <p class="text-xl text-white/90 mb-6">From beginner to expert - comprehensive courses designed to accelerate your trading journey</p>
+            <div class="flex items-center space-x-4">
+                <button class="bg-white text-primary font-semibold rounded-lg px-8 py-3 hover:shadow-xl transition-all">
+                    Browse All Courses
+                </button>
+                <button class="border-2 border-white text-white font-semibold rounded-lg px-8 py-3 hover:bg-white hover:text-primary transition-all">
+                    My Learning Path
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-1">
+            <div id="sidebar-my-courses" class="bg-surface border border-border rounded-xl p-6 mb-6 sticky top-24">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-graduation-cap text-accent mr-2"></i>
+                    My Courses
+                </h3>
+                <div class="space-y-4">
+                    <div class="bg-background rounded-lg p-4 cursor-pointer hover:border hover:border-accent transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-sm">Technical Analysis Mastery</h4>
+                            <span class="text-xs bg-accent/20 text-accent px-2 py-1 rounded">65%</span>
+                        </div>
+                        <div class="w-full bg-border rounded-full h-2 mb-2">
+                            <div class="bg-accent h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                        <p class="text-xs text-textSecondary">12 of 18 lessons complete</p>
+                    </div>
+                    <div class="bg-background rounded-lg p-4 cursor-pointer hover:border hover:border-accent transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-sm">Risk Management 101</h4>
+                            <span class="text-xs bg-success/20 text-success px-2 py-1 rounded">100%</span>
+                        </div>
+                        <div class="w-full bg-border rounded-full h-2 mb-2">
+                            <div class="bg-success h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-textSecondary">Completed</p>
+                    </div>
+                    <div class="bg-background rounded-lg p-4 cursor-pointer hover:border hover:border-accent transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-sm">AI Trading Strategies</h4>
+                            <span class="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">25%</span>
+                        </div>
+                        <div class="w-full bg-border rounded-full h-2 mb-2">
+                            <div class="bg-secondary h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                        <p class="text-xs text-textSecondary">3 of 12 lessons complete</p>
+                    </div>
+                </div>
+                <button class="w-full mt-4 bg-background border border-border text-textPrimary hover:border-accent px-4 py-2.5 rounded-lg text-sm font-medium transition-all">
+                    View All Courses
+                </button>
+            </div>
+
+            <div id="sidebar-certificates" class="bg-surface border border-border rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-certificate text-success mr-2"></i>
+                    Certificates
+                </h3>
+                <div class="space-y-3">
+                    <div class="bg-background rounded-lg p-3 cursor-pointer hover:bg-surface transition-all">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-award text-success text-2xl mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-xs">Risk Management</h4>
+                                <p class="text-xs text-textSecondary">Issued: Jan 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-background rounded-lg p-3 cursor-pointer hover:bg-surface transition-all">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-award text-accent text-2xl mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-xs">Beginner Trading</h4>
+                                <p class="text-xs text-textSecondary">Issued: Dec 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3">
+            <div id="category-filters" class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold">Explore Courses</h2>
+                    <div class="flex items-center space-x-3">
+                        <select class="bg-surface border border-border rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-accent">
+                            <option>All Levels</option>
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Advanced</option>
+                        </select>
+                        <select class="bg-surface border border-border rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-accent">
+                            <option>Sort by: Popular</option>
+                            <option>Newest</option>
+                            <option>Highest Rated</option>
+                            <option>Duration</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="bg-accent text-white px-5 py-2 rounded-lg text-sm font-medium">All Categories</button>
+                    <button class="bg-surface text-textSecondary hover:bg-background px-5 py-2 rounded-lg text-sm font-medium transition-colors">Beginner</button>
+                    <button class="bg-surface text-textSecondary hover:bg-background px-5 py-2 rounded-lg text-sm font-medium transition-colors">Technical Analysis</button>
+                    <button class="bg-surface text-textSecondary hover:bg-background px-5 py-2 rounded-lg text-sm font-medium transition-colors">Risk Management</button>
+                    <button class="bg-surface text-textSecondary hover:bg-background px-5 py-2 rounded-lg text-sm font-medium transition-colors">AI Trading</button>
+                </div>
+            </div>
+
+            <div id="featured-course" class="bg-gradient-to-r from-primary to-accent rounded-xl overflow-hidden mb-8 border border-border">
+                <div class="grid grid-cols-2 gap-6 p-8">
+                    <div class="flex flex-col justify-center">
+                        <span class="bg-secondary text-white px-3 py-1 rounded-full text-xs font-medium inline-block w-fit mb-3">Featured Course</span>
+                        <h2 class="text-3xl font-bold mb-4">AI-Powered Trading Strategies</h2>
+                        <p class="text-white/90 mb-6">Learn to leverage artificial intelligence and machine learning for smarter trading decisions. Master algorithmic trading and predictive analytics.</p>
+                        <div class="flex items-center space-x-6 mb-6 text-sm">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-2"></i>
+                                <span>8 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-signal mr-2"></i>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-star text-yellow-400 mr-1"></i>
+                                <span>4.9 (2,847)</span>
+                            </div>
+                        </div>
+                        <button class="bg-white text-primary font-semibold rounded-lg px-8 py-3 hover:shadow-xl transition-all w-fit">
+                            Enroll Now
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="h-64 w-full overflow-hidden rounded-lg">
+                            <img class="w-full h-full object-cover" src="../assets/images/3a935d6a55-c339f673ae7c72eda22f.png" alt="AI artificial intelligence trading dashboard with neural networks, machine learning algorithms, futuristic technology, blue and red gradient" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="course-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/0bbe6bc312-37321dcbfadd9eea75ec.png" alt="beginner stock market trading basics, person learning on laptop, charts and graphs, educational setting" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-success/20 text-success px-3 py-1 rounded-full text-xs font-medium">Beginner</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium">Popular</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Stock Market Fundamentals</h3>
+                        <p class="text-textSecondary text-sm mb-4">Master the basics of stock trading, market analysis, and investment strategies for beginners.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>4 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>24 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-2.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">Carlos Martinez</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.8 (1,234)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/fcae3ec699-8e4b837dd999dae5a561.png" alt="technical analysis charts, candlestick patterns, trading indicators, professional trader analyzing screen" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-medium">Intermediate</span>
+                            <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-xs font-medium">Trending</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Technical Analysis Mastery</h3>
+                        <p class="text-textSecondary text-sm mb-4">Deep dive into chart patterns, indicators, and advanced technical analysis techniques.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>6 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>36 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-5.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">Maria Rodriguez</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.9 (2,156)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/62b002cf22-ddf2ad17c44e2e339ed8.png" alt="risk management trading concept, portfolio diversification, financial safety, protective shield with charts" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-success/20 text-success px-3 py-1 rounded-full text-xs font-medium">Beginner</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium">Essential</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Risk Management Essentials</h3>
+                        <p class="text-textSecondary text-sm mb-4">Learn to protect your capital with proven risk management strategies and position sizing.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>3 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>18 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-3.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">David Chen</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.7 (987)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/7cae7ec553-8f5feba8d7b67124c481.png" alt="cryptocurrency trading bitcoin ethereum, digital assets, blockchain technology, modern crypto exchange" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-medium">Intermediate</span>
+                            <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-xs font-medium">New</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Cryptocurrency Trading</h3>
+                        <p class="text-textSecondary text-sm mb-4">Navigate the crypto markets with confidence. Learn blockchain, DeFi, and digital asset trading.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>5 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>30 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-8.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">Alex Thompson</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.8 (1,543)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/b932f3e007-816cab10eae3d971fd46.png" alt="options trading strategies, derivatives, financial instruments, advanced trading concepts" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-danger/20 text-danger px-3 py-1 rounded-full text-xs font-medium">Advanced</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium">Expert</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Options Trading Strategies</h3>
+                        <p class="text-textSecondary text-sm mb-4">Master complex options strategies including spreads, straddles, and advanced derivatives.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>8 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>42 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-1.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">Sarah Johnson</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.9 (1,876)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover" src="../assets/images/87d0c803cf-137635b78d3a3349061f.png" alt="psychology of trading, emotional control, mindset, trader meditation and focus" />
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-medium">Intermediate</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium">Popular</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 hover:text-accent transition-colors">Trading Psychology</h3>
+                        <p class="text-textSecondary text-sm mb-4">Develop mental discipline, emotional control, and the mindset of successful traders.</p>
+                        <div class="flex items-center space-x-4 mb-4 text-sm text-textSecondary">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>4 weeks</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-book mr-1"></i>
+                                <span>20 lessons</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <img src="../assets/images/avatar-6.jpg" alt="instructor" class="w-8 h-8 rounded-full">
+                                <span class="text-sm">Lisa Anderson</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400 text-sm">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span>4.8 (1,654)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button class="bg-surface border border-border text-textPrimary hover:border-accent px-8 py-3 rounded-lg font-medium transition-all flex items-center">
+                    Load More Courses
+                    <i class="fa-solid fa-chevron-down ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/navigation.js" defer></script>
+</body>
+</html>

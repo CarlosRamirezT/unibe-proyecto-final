@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors flex items-center">
+                            Features
+                            <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-textPrimary font-medium border-b-2 border-accent transition-colors">Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textSecondary hover:text-textPrimary px-4 py-2">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="pricing-hero" class="py-16 bg-gradient-to-b from-surface to-background">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold mb-4">Choose Your Trading Plan</h1>
+        <p class="text-xl text-textSecondary mb-8">Select the perfect plan to power your trading journey with AI-driven insights</p>
+        
+        <div class="flex items-center justify-center space-x-4 mb-8">
+            <div class="flex items-center bg-surface border border-border rounded-lg p-1">
+                <button class="billing-toggle px-6 py-2 rounded-md bg-accent text-white font-medium transition-all" data-period="monthly">
+                    Monthly
+                </button>
+                <button class="billing-toggle px-6 py-2 rounded-md text-textSecondary hover:text-white transition-all" data-period="annual">
+                    Annual
+                    <span class="ml-2 text-xs bg-success/20 text-success px-2 py-1 rounded">Save 20%</span>
+                </button>
+            </div>
+            <div class="flex items-center bg-surface border border-border rounded-lg px-4 py-2">
+                <i class="fa-solid fa-dollar-sign text-accent mr-2"></i>
+                <select class="bg-transparent text-textPrimary focus:outline-none cursor-pointer">
+                    <option value="USD">USD</option>
+                    <option value="DOP" selected>DOP (DR Peso)</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pricing-plans" class="py-12 bg-background">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            <div id="plan-free" class="bg-surface border border-border rounded-2xl p-8 hover:border-accent transition-all">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold mb-2">Free</h3>
+                    <p class="text-textSecondary">Perfect for beginners exploring trading</p>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-baseline">
+                        <span class="text-5xl font-bold">DOP 0</span>
+                        <span class="text-textSecondary ml-2">/month</span>
+                    </div>
+                </div>
+                <button class="w-full bg-surface border border-accent text-accent font-semibold rounded-lg py-3 hover:bg-accent hover:text-white transition-all mb-8">
+                    Get Started
+                </button>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">5 AI signals per day</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Basic Trading Copilot (10 trades/month)</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">1 broker integration</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Email alerts</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Access to 3 beginner courses</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Community forum access</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">DR Market basic data</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plan-pro" class="bg-gradient-to-b from-accent/10 to-surface border-2 border-accent rounded-2xl p-8 relative transform scale-105 shadow-xl shadow-accent/20">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-secondary to-accent text-white text-sm font-semibold px-6 py-2 rounded-full">
+                    MOST POPULAR
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                    <p class="text-textSecondary">For serious traders who need more</p>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-baseline">
+                        <span class="text-5xl font-bold">DOP 1,899</span>
+                        <span class="text-textSecondary ml-2">/month</span>
+                    </div>
+                    <div class="text-sm text-success mt-1">Save DOP 4,560 with annual</div>
+                </div>
+                <button class="w-full bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg py-3 hover:shadow-lg hover:shadow-accent/30 transition-all mb-8">
+                    Start Pro Trial
+                </button>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">50 AI signals</strong> per day</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">Advanced Trading Copilot</strong> (unlimited trades)</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">5 broker integrations</strong></span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">SMS + Email + Push alerts</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">Full course library access</strong></span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Priority Q&A support</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Private community channels</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">DR Market real-time data</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Advanced charting tools</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plan-elite" class="bg-surface border border-border rounded-2xl p-8 hover:border-secondary transition-all">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold mb-2">Elite</h3>
+                    <p class="text-textSecondary">For professional traders & institutions</p>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-baseline">
+                        <span class="text-5xl font-bold">DOP 4,999</span>
+                        <span class="text-textSecondary ml-2">/month</span>
+                    </div>
+                    <div class="text-sm text-success mt-1">Save DOP 11,976 with annual</div>
+                </div>
+                <button class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg py-3 hover:shadow-lg hover:shadow-secondary/30 transition-all mb-8">
+                    Contact Sales
+                </button>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">Unlimited AI signals</strong></span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">Premium Trading Copilot</strong> with custom strategies</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary"><strong class="text-white">Unlimited broker integrations</strong></span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Multi-channel alerts + API access</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">1-on-1 expert mentorship</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Dedicated account manager</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">VIP community perks</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">DR Market Level 2 data</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Custom integrations & white-label</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-check text-success mt-1 mr-3"></i>
+                        <span class="text-textSecondary">Priority phone support 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="comparison-table" class="py-20 bg-surface">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Detailed Feature Comparison</h2>
+            <p class="text-xl text-textSecondary">Compare all features across our plans</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto overflow-x-auto">
+            <table class="w-full bg-background border border-border rounded-xl overflow-hidden">
+                <thead>
+                    <tr class="border-b border-border">
+                        <th class="text-left p-6 text-textSecondary font-medium">Features</th>
+                        <th class="text-center p-6 font-semibold">Free</th>
+                        <th class="text-center p-6 font-semibold bg-accent/5">Pro</th>
+                        <th class="text-center p-6 font-semibold">Elite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">AI Trading Signals</td>
+                        <td class="text-center p-6 text-textSecondary">5/day</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">50/day</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Unlimited</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Trading Copilot Trades</td>
+                        <td class="text-center p-6 text-textSecondary">10/month</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">Unlimited</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Unlimited + Custom</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Broker Integrations</td>
+                        <td class="text-center p-6 text-textSecondary">1</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">5</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Unlimited</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Alert Types</td>
+                        <td class="text-center p-6 text-textSecondary">Email</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">SMS + Email + Push</td>
+                        <td class="text-center p-6 text-secondary font-semibold">All + API</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">E-learning Access</td>
+                        <td class="text-center p-6 text-textSecondary">3 courses</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">Full library</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Full + Mentorship</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">DR Market Data</td>
+                        <td class="text-center p-6 text-textSecondary">Basic</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">Real-time</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Level 2</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Community Access</td>
+                        <td class="text-center p-6"><i class="fa-solid fa-check text-success"></i></td>
+                        <td class="text-center p-6 bg-accent/5"><i class="fa-solid fa-check text-success"></i></td>
+                        <td class="text-center p-6"><i class="fa-solid fa-check text-success"></i></td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Q&A Support</td>
+                        <td class="text-center p-6 text-textSecondary">Standard</td>
+                        <td class="text-center p-6 bg-accent/5 text-accent font-semibold">Priority</td>
+                        <td class="text-center p-6 text-secondary font-semibold">Dedicated</td>
+                    </tr>
+                    <tr class="border-b border-border">
+                        <td class="p-6 font-medium">Advanced Charting</td>
+                        <td class="text-center p-6"><i class="fa-solid fa-times text-danger"></i></td>
+                        <td class="text-center p-6 bg-accent/5"><i class="fa-solid fa-check text-success"></i></td>
+                        <td class="text-center p-6"><i class="fa-solid fa-check text-success"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="p-6 font-medium">API Access</td>
+                        <td class="text-center p-6"><i class="fa-solid fa-times text-danger"></i></td>
+                        <td class="text-center p-6 bg-accent/5"><i class="fa-solid fa-times text-danger"></i></td>
+                        <td class="text-center p-6"><i class="fa-solid fa-check text-success"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="faq-section" class="py-20 bg-background">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p class="text-xl text-textSecondary">Everything you need to know about our pricing</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold">Can I switch plans at any time?</h3>
+                    <i class="fa-solid fa-chevron-down text-textSecondary"></i>
+                </div>
+                <p class="text-textSecondary mt-4">Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any payments accordingly.</p>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold">What payment methods do you accept?</h3>
+                    <i class="fa-solid fa-chevron-down text-textSecondary"></i>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold">Is there a free trial for Pro or Elite plans?</h3>
+                    <i class="fa-solid fa-chevron-down text-textSecondary"></i>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold">How does the DR Market integration work?</h3>
+                    <i class="fa-solid fa-chevron-down text-textSecondary"></i>
+                </div>
+            </div>
+
+            <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold">What happens to my data if I cancel?</h3>
+                    <i class="fa-solid fa-chevron-down text-textSecondary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cta-section" class="py-20 bg-gradient-to-r from-primary via-accent to-secondary">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-4">Ready to Start Trading Smarter?</h2>
+        <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">Join thousands of traders using AI-powered insights to make better investment decisions</p>
+        <div class="flex items-center justify-center space-x-4">
+            <button class="bg-white text-primary font-semibold rounded-lg px-8 py-4 hover:shadow-xl transition-all text-lg">
+                Start Free Trial
+            </button>
+            <button class="bg-transparent border-2 border-white text-white font-semibold rounded-lg px-8 py-4 hover:bg-white hover:text-primary transition-all text-lg">
+                Contact Sales
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/pages/pricing.js" defer></script>
+<script src="../js/navigation.js" defer></script>
+</body>
+</html>

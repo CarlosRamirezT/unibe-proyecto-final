@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Copilot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-3.1.1.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-accent font-medium border-b-2 border-accent pb-1">Trading Copilot</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textPrimary font-medium px-4 py-2 transition-colors">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="copilot-hero" class="bg-gradient-to-r from-primary via-accent to-secondary h-[280px] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1de6b338ea-132bf3515c985d8f04bb.png" alt="futuristic AI neural network visualization, trading charts, technology background, blue and red gradient" />
+    </div>
+    <div class="container mx-auto px-6 h-full flex items-center relative z-10">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl font-bold mb-4">AI Trading Copilot</h1>
+            <p class="text-xl text-white/90 mb-6">Your intelligent assistant for smarter trading decisions. Get real-time analysis, risk assessment, and actionable insights powered by advanced AI.</p>
+            <div class="flex items-center space-x-4">
+                <button class="bg-white text-primary font-semibold rounded-lg px-8 py-3 hover:shadow-xl transition-all flex items-center">
+                    <i class="fa-solid fa-robot mr-2"></i>
+                    Start Chat
+                </button>
+                <button class="bg-transparent border-2 border-white text-white font-semibold rounded-lg px-8 py-3 hover:bg-white/10 transition-all">
+                    View Examples
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2">
+            <div id="copilot-interface" class="bg-surface border border-border rounded-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-primary/20 to-accent/20 border-b border-border px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-robot text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Trading Copilot AI</h3>
+                            <p class="text-xs text-textSecondary">Powered by Advanced Analytics</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-success/20 text-success px-3 py-1 rounded-full text-xs flex items-center">
+                            <i class="fa-solid fa-circle text-xs mr-2"></i>
+                            Online
+                        </span>
+                        <button class="text-textSecondary hover:text-textPrimary p-2">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="h-[500px] overflow-y-auto p-6 space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="bg-surface border border-border rounded-lg p-4 max-w-2xl">
+                            <p class="text-sm">Hello! I'm your AI Trading Copilot. I can help you analyze tickers, create portfolios, explain indicators, and provide trading insights. How can I assist you today?</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 justify-end">
+                        <div class="bg-gradient-to-r from-accent to-primary rounded-lg p-4 max-w-2xl">
+                            <p class="text-sm">Analyze BHD stock for me</p>
+                        </div>
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="user" class="w-8 h-8 rounded-full flex-shrink-0">
+                    </div>
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="bg-surface border border-border rounded-lg p-4 max-w-2xl">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <i class="fa-solid fa-chart-line text-accent"></i>
+                                <h4 class="font-bold">BHD Stock Analysis</h4>
+                            </div>
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-background rounded-lg p-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-textSecondary">Signal Confidence</span>
+                                        <span class="text-success font-bold">78%</span>
+                                    </div>
+                                    <div class="w-full bg-border rounded-full h-2">
+                                        <div class="bg-success rounded-full h-2" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="text-textSecondary">Current Price:</span>
+                                    <span class="text-textPrimary font-bold ml-2">RD$ 485.50</span>
+                                    <span class="text-success ml-2">+2.3%</span>
+                                </div>
+                                <div>
+                                    <span class="text-textSecondary">Recommendation:</span>
+                                    <span class="bg-success/20 text-success px-3 py-1 rounded-full text-xs ml-2">BUY</span>
+                                </div>
+                                <div>
+                                    <p class="text-textSecondary mb-2">Entry Zones:</p>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <span>Primary Entry:</span>
+                                            <span class="font-bold">RD$ 480 - 485</span>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span>Secondary Entry:</span>
+                                            <span class="font-bold">RD$ 475 - 478</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-textSecondary mb-2">Exit Targets:</p>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <span>Target 1:</span>
+                                            <span class="font-bold text-success">RD$ 495</span>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span>Target 2:</span>
+                                            <span class="font-bold text-success">RD$ 505</span>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span>Stop Loss:</span>
+                                            <span class="font-bold text-danger">RD$ 472</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-danger/10 border border-danger/30 rounded-lg p-3">
+                                    <div class="flex items-start space-x-2">
+                                        <i class="fa-solid fa-triangle-exclamation text-danger mt-0.5"></i>
+                                        <div>
+                                            <p class="font-bold text-danger text-xs mb-1">Risk Notes</p>
+                                            <p class="text-xs">Market volatility high. Banking sector facing regulatory changes. Consider position sizing carefully.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-border flex items-center space-x-2">
+                                <button class="bg-accent text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-accent/80 transition-all">
+                                    <i class="fa-solid fa-download mr-1"></i>
+                                    Export to Trade Plan
+                                </button>
+                                <button class="bg-background border border-border text-textPrimary px-4 py-2 rounded-lg text-xs font-medium hover:border-accent transition-all">
+                                    <i class="fa-solid fa-plus mr-1"></i>
+                                    Add to Watchlist
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-border p-4">
+                    <div class="flex items-center space-x-3">
+                        <input type="text" placeholder="Ask me anything about trading..." class="flex-1 bg-background border border-border rounded-lg px-4 py-3 text-white placeholder-textSecondary focus:outline-none focus:border-accent">
+                        <button class="bg-gradient-to-r from-secondary to-accent text-white p-3 rounded-lg hover:shadow-lg transition-all">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chart-widget" class="bg-surface border border-border rounded-xl p-6 mt-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold flex items-center">
+                        <i class="fa-solid fa-chart-candlestick text-accent mr-2"></i>
+                        BHD - Price Chart
+                    </h3>
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-background border border-border text-textSecondary hover:border-accent px-3 py-1 rounded text-xs transition-all">1D</button>
+                        <button class="bg-accent text-white px-3 py-1 rounded text-xs">1W</button>
+                        <button class="bg-background border border-border text-textSecondary hover:border-accent px-3 py-1 rounded text-xs transition-all">1M</button>
+                        <button class="bg-background border border-border text-textSecondary hover:border-accent px-3 py-1 rounded text-xs transition-all">1Y</button>
+                    </div>
+                </div>
+                <div id="stock-chart" style="height: 350px"></div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1 space-y-6">
+            <div id="prompt-templates" class="bg-surface border border-border rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-wand-magic-sparkles text-accent mr-2"></i>
+                    Quick Prompts
+                </h3>
+                <div class="space-y-3">
+                    <button class="w-full bg-background border border-border hover:border-accent rounded-lg p-4 text-left transition-all group">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-magnifying-glass-chart text-accent group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">Analyze this ticker</h4>
+                                <p class="text-xs text-textSecondary">Get comprehensive analysis of any stock</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="w-full bg-background border border-border hover:border-accent rounded-lg p-4 text-left transition-all group">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-briefcase text-success group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">Create a DR portfolio</h4>
+                                <p class="text-xs text-textSecondary">Build diversified Dominican stock portfolio</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="w-full bg-background border border-border hover:border-accent rounded-lg p-4 text-left transition-all group">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-lightbulb text-secondary group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">Explain this indicator</h4>
+                                <p class="text-xs text-textSecondary">Learn about technical indicators</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="w-full bg-background border border-border hover:border-accent rounded-lg p-4 text-left transition-all group">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-shield-halved text-danger group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">Risk assessment</h4>
+                                <p class="text-xs text-textSecondary">Evaluate portfolio risk levels</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="w-full bg-background border border-border hover:border-accent rounded-lg p-4 text-left transition-all group">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-newspaper text-primary group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">Market news impact</h4>
+                                <p class="text-xs text-textSecondary">Analyze how news affects stocks</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="watchlist-integration" class="bg-surface border border-border rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold flex items-center">
+                        <i class="fa-solid fa-star text-success mr-2"></i>
+                        My Watchlist
+                    </h3>
+                    <button class="text-accent hover:text-accent/80 text-sm">
+                        <i class="fa-solid fa-plus mr-1"></i>
+                        Add
+                    </button>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-background rounded-lg p-3 hover:border hover:border-accent transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold">BHD</span>
+                            <span class="text-success text-sm">+2.3%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-textSecondary">RD$ 485.50</span>
+                            <button class="text-accent hover:text-accent/80">
+                                <i class="fa-solid fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-background rounded-lg p-3 hover:border hover:border-accent transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold">BPD</span>
+                            <span class="text-danger text-sm">-1.2%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-textSecondary">RD$ 342.80</span>
+                            <button class="text-accent hover:text-accent/80">
+                                <i class="fa-solid fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-background rounded-lg p-3 hover:border hover:border-accent transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold">VIMENCA</span>
+                            <span class="text-success text-sm">+0.8%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-textSecondary">RD$ 128.40</span>
+                            <button class="text-accent hover:text-accent/80">
+                                <i class="fa-solid fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="news-context" class="bg-surface border border-border rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-newspaper text-secondary mr-2"></i>
+                    Market Context
+                </h3>
+                <div class="space-y-4">
+                    <div class="border-l-2 border-accent pl-3">
+                        <h4 class="font-semibold text-sm mb-1">Banking Sector Update</h4>
+                        <p class="text-xs text-textSecondary mb-2">Central Bank announces new liquidity measures affecting major banks</p>
+                        <span class="text-xs text-textSecondary">2 hours ago</span>
+                    </div>
+                    <div class="border-l-2 border-success pl-3">
+                        <h4 class="font-semibold text-sm mb-1">Tourism Stocks Rally</h4>
+                        <p class="text-xs text-textSecondary mb-2">Record visitor numbers boost hospitality sector performance</p>
+                        <span class="text-xs text-textSecondary">5 hours ago</span>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3">
+                        <h4 class="font-semibold text-sm mb-1">Energy Sector Concerns</h4>
+                        <p class="text-xs text-textSecondary mb-2">Fuel price increases impact utility companies</p>
+                        <span class="text-xs text-textSecondary">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="copilot-features" class="bg-gradient-to-br from-primary/20 to-accent/20 border border-accent/30 rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-rocket text-accent mr-2"></i>
+                    AI Capabilities
+                </h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>Real-time market analysis</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>Risk assessment & position sizing</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>Entry/exit point recommendations</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>Portfolio optimization</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>News sentiment analysis</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-check text-success mt-1"></i>
+                        <span>Technical indicator explanations</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+    try {
+        var dates = ['Jan 15', 'Jan 16', 'Jan 17', 'Jan 18', 'Jan 19', 'Jan 22', 'Jan 23'];
+        var prices = [475, 478, 482, 480, 485, 488, 485.5];
+        
+        var trace = {
+            type: 'scatter',
+            mode: 'lines',
+            x: dates,
+            y: prices,
+            line: {
+                color: '#0052B4',
+                width: 3
+            },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(0, 82, 180, 0.1)'
+        };
+
+        var layout = {
+            margin: { t: 20, r: 20, b: 40, l: 60 },
+            plot_bgcolor: '#0A0E27',
+            paper_bgcolor: '#0A0E27',
+            xaxis: {
+                gridcolor: '#1E293B',
+                color: '#94A3B8'
+            },
+            yaxis: {
+                gridcolor: '#1E293B',
+                color: '#94A3B8',
+                title: 'Price (RD$)'
+            },
+            showlegend: false
+        };
+
+        var config = {
+            responsive: true,
+            displayModeBar: false,
+            displaylogo: false
+        };
+
+        Plotly.newPlot('stock-chart', [trace], layout, config);
+    } catch(e) {
+        document.getElementById('stock-chart').innerHTML = '<div class="flex items-center justify-center h-full text-textSecondary">Chart unavailable</div>';
+    }
+});
+</script>
+
+</body>
+</html>

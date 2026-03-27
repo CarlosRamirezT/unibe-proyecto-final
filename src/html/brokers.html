@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brokers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background text-textPrimary font-sans">
+
+<header id="header" class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-12">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors flex items-center">
+                            Features
+                            <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Stock Markets</a>
+                    <a href="#" class="text-accent font-medium border-b-2 border-accent pb-1">Brokers</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">E-learning</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">News</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Q&A</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Forum</a>
+                    <a href="#" class="text-textSecondary hover:text-textPrimary transition-colors">Pricing</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="text-textSecondary hover:text-textPrimary p-2">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <a href="#" class="text-textPrimary font-medium px-4 py-2 transition-colors">Login</a>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Start Trading
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="brokers-header" class="bg-surface border-b border-border py-6">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Broker Directory</h1>
+                <p class="text-textSecondary">Connect with trusted brokers and start trading seamlessly</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                        <i class="fa-solid fa-globe text-textSecondary"></i>
+                    </div>
+                    <select id="countryFilter" class="bg-background border border-border rounded-lg pl-12 pr-10 py-2.5 text-white focus:outline-none focus:border-accent transition-colors appearance-none w-64">
+                        <option value="DO" selected>Dominican Republic 🇩🇴</option>
+                        <option value="US">United States 🇺🇸</option>
+                        <option value="CA">Canada 🇨🇦</option>
+                        <option value="MX">Mexico 🇲🇽</option>
+                        <option value="ES">Spain 🇪🇸</option>
+                        <option value="CO">Colombia 🇨🇴</option>
+                        <option value="BR">Brazil 🇧🇷</option>
+                        <option value="AR">Argentina 🇦🇷</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-chevron-down text-textSecondary text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                        <i class="fa-solid fa-search text-textSecondary"></i>
+                    </div>
+                    <input type="text" placeholder="Search brokers..." class="bg-background border border-border rounded-lg pl-12 pr-4 py-2.5 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-80">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <div class="flex space-x-2">
+                <button class="bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium">All Brokers</button>
+                <button class="bg-background text-textSecondary hover:bg-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors">Stocks</button>
+                <button class="bg-background text-textSecondary hover:bg-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors">Forex</button>
+                <button class="bg-background text-textSecondary hover:bg-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors">Crypto</button>
+                <button class="bg-background text-textSecondary hover:bg-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors">Commodities</button>
+                <button class="bg-background text-textSecondary hover:bg-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors">Futures</button>
+            </div>
+            <button id="compareBtn" class="bg-background border border-accent text-accent hover:bg-accent hover:text-white px-6 py-2 rounded-lg text-sm font-medium transition-all flex items-center">
+                <i class="fa-solid fa-code-compare mr-2"></i>
+                Compare (0)
+            </button>
+        </div>
+    </div>
+</section>
+
+<div class="container mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div id="broker-card-1" class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/10">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/897fc2b0aa-d9da9c49272c932bcfd5.png" alt="modern financial brokerage logo with blue and gold colors" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Popular Securities</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star-half-stroke text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">4.5 (2,340)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">0.15%</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$100</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">$5</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:100</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Stocks</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Forex</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Crypto</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">ETFs</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                    <span class="text-textSecondary">Not Connected</span>
+                </div>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Connect
+                </button>
+            </div>
+        </div>
+
+        <div id="broker-card-2" class="bg-surface border border-accent rounded-xl p-6 hover:shadow-lg hover:shadow-accent/10 transition-all">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/3d6630d925-1b87e4096acdcde47141.png" alt="professional trading platform logo with green and white colors" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">TradeMax Pro</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">5.0 (5,892)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">0.08%</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$250</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">Free</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:200</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Stocks</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Forex</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Crypto</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Commodities</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Futures</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-success rounded-full mr-2 animate-pulse"></div>
+                    <span class="text-success">Connected</span>
+                </div>
+                <button class="bg-background border border-border text-textSecondary rounded-lg px-6 py-2 hover:bg-surface transition-all">
+                    Manage
+                </button>
+            </div>
+        </div>
+
+        <div id="broker-card-3" class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/10">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/6e3de995bc-488959759ec6a5f286e2.png" alt="elite investment broker logo with black and gold design" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Elite Invest</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-regular fa-star text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">4.0 (1,567)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">0.12%</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$500</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">$3</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:50</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Stocks</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">ETFs</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Bonds</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                    <span class="text-textSecondary">Not Connected</span>
+                </div>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Connect
+                </button>
+            </div>
+        </div>
+
+        <div id="broker-card-4" class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/10">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/5992f24d2a-47dab937dd3f2cae7500.png" alt="modern crypto trading platform logo with purple and cyan colors" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">CryptoFlow</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star-half-stroke text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">4.6 (3,421)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">0.10%</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$50</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">Network Fee</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:125</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Crypto</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">DeFi</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">NFTs</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                    <span class="text-textSecondary">Not Connected</span>
+                </div>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Connect
+                </button>
+            </div>
+        </div>
+
+        <div id="broker-card-5" class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/10">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/e232dd2b3d-cc834b8a46637cf71599.png" alt="global forex broker logo with red and black colors" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">ForexMaster</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-regular fa-star text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">4.2 (2,789)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">Spread Only</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$200</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">$10</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:500</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Forex</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Commodities</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Indices</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                    <span class="text-textSecondary">Not Connected</span>
+                </div>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Connect
+                </button>
+            </div>
+        </div>
+
+        <div id="broker-card-6" class="bg-surface border border-border rounded-xl p-6 hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/10">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-background rounded-lg flex items-center justify-center p-2">
+                        <img class="w-full h-full object-contain" src="../assets/images/ac7a22e673-60e406ba1730a1fc4b69.png" alt="premium investment platform logo with navy blue and gold" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">WealthBuilder</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star text-secondary text-sm"></i>
+                            <i class="fa-solid fa-star-half-stroke text-secondary text-sm"></i>
+                            <span class="text-textSecondary text-xs ml-2">4.7 (4,123)</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="w-5 h-5 rounded border-border accent-accent cursor-pointer" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                    <div class="text-textSecondary mb-1">Trading Fee</div>
+                    <div class="font-semibold">0.05%</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Min. Deposit</div>
+                    <div class="font-semibold">$1,000</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Withdrawal Fee</div>
+                    <div class="font-semibold">Free</div>
+                </div>
+                <div>
+                    <div class="text-textSecondary mb-1">Leverage</div>
+                    <div class="font-semibold">Up to 1:30</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="text-textSecondary text-sm mb-2">Supported Markets</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Stocks</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">ETFs</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Bonds</span>
+                    <span class="bg-background px-3 py-1 rounded-full text-xs">Mutual Funds</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                    <span class="text-textSecondary">Not Connected</span>
+                </div>
+                <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                    Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="comparisonDrawer" class="fixed bottom-0 left-0 right-0 bg-surface border-t-2 border-accent shadow-2xl transform translate-y-full transition-transform duration-300 z-40">
+    <div class="container mx-auto px-6 py-6">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold flex items-center">
+                <i class="fa-solid fa-code-compare mr-3 text-accent"></i>
+                Broker Comparison
+            </h3>
+            <button id="closeDrawer" class="text-textSecondary hover:text-textPrimary p-2">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-background rounded-xl p-6 border border-border">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-surface rounded-lg"></div>
+                    <div>
+                        <h4 class="font-bold">Broker 1</h4>
+                        <div class="text-xs text-textSecondary">Select a broker</div>
+                    </div>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Trading Fee</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Min. Deposit</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Rating</span>
+                        <span>-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-background rounded-xl p-6 border border-border">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-surface rounded-lg"></div>
+                    <div>
+                        <h4 class="font-bold">Broker 2</h4>
+                        <div class="text-xs text-textSecondary">Select a broker</div>
+                    </div>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Trading Fee</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Min. Deposit</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Rating</span>
+                        <span>-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-background rounded-xl p-6 border border-border">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-surface rounded-lg"></div>
+                    <div>
+                        <h4 class="font-bold">Broker 3</h4>
+                        <div class="text-xs text-textSecondary">Select a broker</div>
+                    </div>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Trading Fee</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Min. Deposit</span>
+                        <span>-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textSecondary">Rating</span>
+                        <span>-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="connectModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="bg-surface rounded-2xl p-8 max-w-md w-full mx-4 border border-border">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold">Connect Broker</h3>
+            <button id="closeModal" class="text-textSecondary hover:text-textPrimary">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-shield-halved text-accent text-3xl"></i>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Secure Connection</h4>
+            <p class="text-textSecondary text-sm">You'll be redirected to the broker's secure authentication page</p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+            <div class="flex items-start space-x-3">
+                <i class="fa-solid fa-check-circle text-success mt-1"></i>
+                <div class="text-sm">
+                    <div class="font-medium">OAuth 2.0 Security</div>
+                    <div class="text-textSecondary">Industry-standard secure authentication</div>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <i class="fa-solid fa-check-circle text-success mt-1"></i>
+                <div class="text-sm">
+                    <div class="font-medium">Read-Only Access</div>
+                    <div class="text-textSecondary">We only read your portfolio data</div>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <i class="fa-solid fa-check-circle text-success mt-1"></i>
+                <div class="text-sm">
+                    <div class="font-medium">Revoke Anytime</div>
+                    <div class="text-textSecondary">Disconnect whenever you want</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="w-full bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-3 hover:shadow-lg hover:shadow-accent/20 transition-all">
+            Continue to Broker
+        </button>
+    </div>
+</div>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+                </div>
+                <p class="text-textSecondary mb-6 leading-relaxed">AI-powered trading platform designed for modern investors. Trade smarter with advanced analytics, expert insights, and comprehensive market data.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-envelope w-5 mr-3"></i>
+                        <span>support@quantumchart.com</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-phone w-5 mr-3"></i>
+                        <span>+1 (809) 555-0123</span>
+                    </div>
+                    <div class="flex items-center text-textSecondary">
+                        <i class="fa-solid fa-location-dot w-5 mr-3"></i>
+                        <span>Santo Domingo, Dominican Republic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Features</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Copilot</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Stock Markets</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Brokers</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">E-learning</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">News</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Start Trading DR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Q&A Platform</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Trading Forum</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Market Analysis</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Portfolio Tracking</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">API Access</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Premium Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-textSecondary hover:text-accent transition-colors">
+                        <i class="fa-brands fa-youtube text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <input type="email" placeholder="Subscribe to newsletter" class="bg-background border border-border rounded-lg px-4 py-2 text-white placeholder-textSecondary focus:outline-none focus:border-accent w-64">
+                    <button class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-6 py-2 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-textSecondary text-sm">
+                <p>&copy; 2024 Quantum Chart. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/pages/brokers.js" defer></script>
+<script src="../js/navigation.js" defer></script>
+</body>
+</html>
