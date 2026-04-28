@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLO/SLA | Quantum Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002D62',
+                        secondary: '#CE1126',
+                        accent: '#0052B4',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        background: '#0A0E27',
+                        surface: '#141827',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#94A3B8',
+                        border: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>::-webkit-scrollbar { display: none; }</style>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-background text-textPrimary font-sans min-h-screen flex flex-col">
+
+<header class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <a href="./index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-textPrimary">Quantum Chart</span>
+            </a>
+            <a href="./index.html" class="text-textSecondary hover:text-textPrimary transition-colors text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i>
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="flex-1">
+    <section class="py-14 bg-gradient-to-b from-surface to-background border-b border-border">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">SLO/SLA (MVP)</h1>
+            <p class="text-textSecondary max-w-3xl">
+                Este documento define los objetivos de servicio para el MVP de Quantum Chart.
+                Son metas operativas y no representan garantía contractual para eventos fuera de nuestro control.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl space-y-6">
+            <article class="bg-surface border border-border rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-2">Disponibilidad objetivo</h2>
+                <p class="text-textSecondary">Objetivo mensual: <strong class="text-textPrimary">99.0%</strong> de disponibilidad para la aplicación web y API del MVP, excluyendo ventanas de mantenimiento programadas.</p>
+            </article>
+
+            <article class="bg-surface border border-border rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-2">Tiempo de respuesta objetivo</h2>
+                <p class="text-textSecondary">Objetivo en operación normal: <strong class="text-textPrimary">p95 menor o igual a 800 ms</strong> en endpoints críticos (auth, perfil, plan y compliance).</p>
+            </article>
+
+            <article class="bg-surface border border-border rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-2">Ventana de mantenimiento</h2>
+                <p class="text-textSecondary">Mantenimiento programado: domingos entre <strong class="text-textPrimary">02:00 y 04:00 (UTC-4)</strong>. Durante ese período puede haber indisponibilidad parcial o total.</p>
+            </article>
+
+            <article class="bg-surface border border-border rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-2">Soporte y contacto</h2>
+                <ul class="text-textSecondary space-y-2">
+                    <li>Canal principal: <a href="mailto:support@quantumchart.local" class="text-accent hover:text-blue-400">support@quantumchart.local</a></li>
+                    <li>Horario de atención MVP: lunes a viernes, 09:00 a 18:00 (UTC-4)</li>
+                    <li>Tiempo objetivo de primera respuesta: hasta 1 día hábil</li>
+                </ul>
+            </article>
+
+            <article class="bg-surface border border-border rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-2">Exclusiones</h2>
+                <ul class="text-textSecondary list-disc pl-5 space-y-2">
+                    <li>Conectividad o fallas de internet del usuario final.</li>
+                    <li>Interrupciones o degradaciones en proveedores de IA o terceros.</li>
+                    <li>Caídas o latencia en proveedores de mercado, bolsas o feeds de datos.</li>
+                    <li>Eventos de fuerza mayor o incidentes fuera del perímetro de la plataforma.</li>
+                    <li>Bloqueos por configuración local del cliente (firewall, DNS, proxy, antivirus).</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer id="footer" class="bg-surface border-t border-border pt-16 pb-8 mt-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <a href="./index.html" class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <span class="text-3xl font-bold">Quantum Chart</span>
+                </a>
+                <p class="text-textSecondary mb-6 max-w-md">
+                    SLO/SLA de referencia para la operación del MVP.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Help Center</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-textSecondary hover:text-accent transition-colors">Terms of Service</a></li>
+                    <li><a href="./slo-sla.html" class="text-textSecondary hover:text-accent transition-colors">SLO/SLA</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+            <div class="text-center text-textSecondary text-sm">
+                © 2026 Quantum Chart. All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
