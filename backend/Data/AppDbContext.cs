@@ -5,10 +5,28 @@ namespace Backend.Data;
 
 public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
+    public DbSet<AppUser> AppUsers => Set<AppUser>();
     public DbSet<WatchlistItem> WatchlistItems => Set<WatchlistItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AppUser>(entity =>
+        {
+            entity.ToTable("app_users");
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Email)
+                .HasMaxLength(200)
+                .IsRequired();
+            entity.HasIndex(x => x.Email)
+                .IsUnique();
+            entity.Property(x => x.PasswordHash)
+                .HasMaxLength(500)
+                .IsRequired();
+            entity.Property(x => x.CreatedAtUtc)
+                .HasDefaultValueSql("NOW()")
+                .IsRequired();
+        });
+
         modelBuilder.Entity<WatchlistItem>(entity =>
         {
             entity.ToTable("watchlist_items");
