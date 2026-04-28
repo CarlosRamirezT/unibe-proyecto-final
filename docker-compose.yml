@@ -32,7 +32,11 @@ services:
       ASPNETCORE_URLS: http://0.0.0.0:8080
       ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=${POSTGRES_DB:-tradingdb};Username=${POSTGRES_USER:-trading};Password=${POSTGRES_PASSWORD:-tradingpass}
       Jwt__Key: ${JWT_KEY:-CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_KEY_123456}
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      Ai__Provider: ${AI_PROVIDER:-OpenAI}
+      Ai__Model: ${AI_MODEL:-gpt-4o-mini}
+      Ai__ApiStyle: ${AI_API_STYLE:-responses}
+      Ai__OpenAiApiKey: ${OPENAI_API_KEY:-}
+      Ai__ClaudeApiKey: ${CLAUDE_API_KEY:-}
     expose:
       - "8080"
     ports:

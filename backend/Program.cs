@@ -24,6 +24,7 @@ if (string.IsNullOrWhiteSpace(jwtSettings.Key) || jwtSettings.Key.Length < 32)
 }
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
+builder.Services.Configure<AiOptions>(builder.Configuration.GetSection("Ai"));
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,7 +62,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IComplianceService, ComplianceService>();
 builder.Services.AddScoped<IUserPlanService, UserPlanService>();
 builder.Services.AddScoped<IUserStocksService, UserStocksService>();
+builder.Services.AddScoped<IAiChatService, AiChatService>();
 builder.Services.AddScoped<IWatchlistService, WatchlistService>();
+builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 
 const string corsPolicyName = "FrontendOnly";
