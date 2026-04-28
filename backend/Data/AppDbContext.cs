@@ -23,6 +23,9 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
             entity.Property(x => x.PasswordHash)
                 .HasMaxLength(500)
                 .IsRequired();
+            entity.Property(x => x.PlanCode)
+                .HasMaxLength(20);
+            entity.Property(x => x.PlanSelectedAtUtc);
             entity.Property(x => x.CreatedAtUtc)
                 .HasDefaultValueSql("NOW()")
                 .IsRequired();

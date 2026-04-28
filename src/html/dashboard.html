@@ -157,6 +157,10 @@
                 </div>
             </div>
             <div class="ml-auto flex items-center space-x-3">
+                <button id="edit-plan-btn" class="bg-background border border-border px-3 py-2 rounded-lg text-xs font-medium hover:border-accent transition-all" type="button">
+                    <i class="fa-solid fa-layer-group mr-1"></i>
+                    Plan: <span id="user-plan-badge" class="ml-1">FREE</span>
+                </button>
                 <button class="bg-background border border-border px-4 py-2 rounded-lg text-sm font-medium hover:border-accent transition-all">
                     <i class="fa-solid fa-building-columns mr-2"></i>
                     Select Broker
@@ -479,6 +483,52 @@
             <div class="flex justify-end gap-3 border-t border-border px-5 py-4">
                 <button id="accept-terms-btn" type="button" class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-5 py-2.5">
                     Aceptar y continuar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="planModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content">
+            <div class="flex items-center justify-between border-b border-border px-5 py-4">
+                <h5 class="text-lg font-semibold">Selecciona tu plan</h5>
+            </div>
+            <div class="px-5 py-4">
+                <p class="text-sm text-textSecondary mb-4">
+                    MVP: la selección de plan es informativa y no restringe funcionalidades.
+                </p>
+                <div class="space-y-3" id="plan-options-group">
+                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
+                        <input type="radio" name="user-plan" value="FREE" class="accent-blue-500" />
+                        <span class="font-medium">FREE</span>
+                        <span class="text-xs text-textSecondary ml-auto">DOP 0 /mes</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
+                        <input type="radio" name="user-plan" value="PRO" class="accent-blue-500" />
+                        <span class="font-medium">PRO</span>
+                        <span class="text-xs text-textSecondary ml-auto">DOP 1,899 /mes</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
+                        <input type="radio" name="user-plan" value="ELITE" class="accent-blue-500" />
+                        <span class="font-medium">ELITE</span>
+                        <span class="text-xs text-textSecondary ml-auto">DOP 4,999 /mes</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
+                        <input type="radio" name="user-plan" value="B2B" class="accent-blue-500" />
+                        <span class="font-medium">B2B</span>
+                        <span class="text-xs text-textSecondary ml-auto">Negociable /mes</span>
+                    </label>
+                </div>
+                <p id="plan-modal-message" class="text-sm text-textSecondary mt-3"></p>
+            </div>
+            <div class="flex justify-end gap-3 border-t border-border px-5 py-4">
+                <button id="cancel-plan-btn" type="button" class="bg-background border border-border text-textPrimary rounded-lg px-4 py-2.5">
+                    Cerrar
+                </button>
+                <button id="save-plan-btn" type="button" class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-5 py-2.5">
+                    Guardar plan
                 </button>
             </div>
         </div>

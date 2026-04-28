@@ -59,6 +59,7 @@ builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IComplianceService, ComplianceService>();
+builder.Services.AddScoped<IUserPlanService, UserPlanService>();
 builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 builder.Services.AddControllers();
 

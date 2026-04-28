@@ -8,5 +8,9 @@ public sealed class AppUser
 
     public string PasswordHash { get; set; } = string.Empty;
 
+    public string? PlanCode { get; set; }
+
+    public DateTime? PlanSelectedAtUtc { get; set; }
+
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 }
