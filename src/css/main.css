@@ -123,3 +123,79 @@ body.qc-mobile-nav-open .qc-mobile-nav-drawer {
     display: none !important;
   }
 }
+
+/* ── User avatar & dropdown ───────────────────────── */
+.qc-avatar-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.qc-user-avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0052B4, #CE1126);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+}
+
+.qc-user-avatar-btn:hover {
+  opacity: 0.85;
+}
+
+.qc-avatar-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  background: #141827;
+  border: 1px solid #1E293B;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.qc-avatar-dropdown--open {
+  display: block;
+}
+
+.qc-avatar-menu-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.qc-avatar-menu-item:disabled {
+  color: #94A3B8;
+  cursor: default;
+}
+
+.qc-avatar-menu-item:not(:disabled):hover {
+  background: #1E293B;
+}
+
+.qc-logout-btn {
+  color: #EF4444 !important;
+}
+
+.qc-avatar-menu-divider {
+  margin: 0.25rem 0;
+  border-color: #1E293B;
+}

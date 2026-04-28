@@ -1,4 +1,6 @@
 using System;
+using Backend.Data;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -6,6 +8,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Backend.Migrations
 {
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20260428133000_AddTermsAcceptances")]
     public partial class AddTermsAcceptances : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -87,3 +87,22 @@ Valida rapidamente consistencia de rutas internas y assets de las vistas estatic
 ```bash
 ./scripts/smoke-routes.sh
 ```
+
+## Configuracion OpenAI (Docker)
+
+Si aparece el error "OpenAI API key is not configured.", configura la variable de entorno del backend:
+
+1. Copia `.env.example` a `.env` en la raiz del proyecto.
+2. Edita `.env` y coloca tu key real:
+
+```env
+OPENAI_API_KEY=sk-...
+```
+
+3. Reinicia el backend para que tome la variable:
+
+```bash
+docker compose up -d --build backend
+```
+
+Nota: en `docker-compose.yml` el backend ya mapea esta variable con `Ai__OpenAiApiKey: ${OPENAI_API_KEY:-}`.

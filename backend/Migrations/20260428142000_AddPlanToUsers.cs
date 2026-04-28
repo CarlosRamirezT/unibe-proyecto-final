@@ -1,10 +1,14 @@
 using System;
+using Backend.Data;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Backend.Migrations
 {
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20260428142000_AddPlanToUsers")]
     public partial class AddPlanToUsers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -352,8 +352,101 @@
     });
   }
 
+  function applyAuthState() {
+    const token = localStorage.getItem('qc_auth_token');
+    const header = document.querySelector('#header');
+    if (!header) return;
+
+    // Find the Login anchor in the header right section
+    const loginAnchor = Array.from(header.querySelectorAll('a')).find(function (a) {
+      return a.textContent.replace(/\s+/g, ' ').trim().toLowerCase() === 'login';
+    });
+
+    if (token) {
+      // Hide Login link
+      if (loginAnchor) {
+        loginAnchor.style.display = 'none';
+      }
+
+      // Get user initials from stored user data
+      let initial = 'U';
+      try {
+        const userData = JSON.parse(localStorage.getItem('qc_auth_user') || '{}');
+        const email = userData.email || userData.Email || '';
+        if (email) {
+          initial = email.charAt(0).toUpperCase();
+        }
+      } catch (_) {}
+
+      // Avoid inserting twice
+      if (header.querySelector('.qc-user-avatar-btn')) return;
+
+      // Build avatar button + dropdown
+      const rightSection = loginAnchor
+        ? loginAnchor.parentElement
+        : header.querySelector('.flex.items-center.space-x-4');
+      if (!rightSection) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'qc-avatar-wrapper';
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'qc-user-avatar-btn';
+      btn.setAttribute('aria-haspopup', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = initial;
+
+      const dropdown = document.createElement('div');
+      dropdown.className = 'qc-avatar-dropdown';
+      dropdown.setAttribute('role', 'menu');
+      dropdown.innerHTML =
+        '<button type="button" class="qc-avatar-menu-item" disabled>Perfil</button>' +
+        '<button type="button" class="qc-avatar-menu-item" disabled>Configuraci\u00f3n</button>' +
+        '<hr class="qc-avatar-menu-divider">' +
+        '<button type="button" class="qc-avatar-menu-item qc-logout-btn">Log Out</button>';
+
+      wrapper.appendChild(btn);
+      wrapper.appendChild(dropdown);
+
+      // Insert before the first button sibling or append
+      const firstBtn = rightSection.querySelector('button');
+      if (firstBtn) {
+        rightSection.insertBefore(wrapper, firstBtn);
+      } else {
+        rightSection.appendChild(wrapper);
+      }
+
+      // Toggle dropdown visibility
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('qc-avatar-dropdown--open');
+        dropdown.classList.toggle('qc-avatar-dropdown--open', !isOpen);
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('qc-avatar-dropdown--open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+
+      dropdown.querySelector('.qc-logout-btn').addEventListener('click', function () {
+        localStorage.removeItem('qc_auth_token');
+        localStorage.removeItem('qc_auth_user');
+        localStorage.removeItem('qc_terms_modal_pending');
+        window.location.href = './login.html';
+      });
+    } else {
+      // Ensure Login is visible when not authenticated
+      if (loginAnchor) {
+        loginAnchor.style.display = '';
+      }
+    }
+  }
+
   wireAnchors();
   wireButtons();
   buildMobileNav();
   markActiveNav();
+  applyAuthState();
 })();
