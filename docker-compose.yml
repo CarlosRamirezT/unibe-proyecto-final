@@ -31,6 +31,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://0.0.0.0:8080
       ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=${POSTGRES_DB:-tradingdb};Username=${POSTGRES_USER:-trading};Password=${POSTGRES_PASSWORD:-tradingpass}
+      Jwt__Key: ${JWT_KEY:-CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_KEY_123456}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
     expose:
       - "8080"
