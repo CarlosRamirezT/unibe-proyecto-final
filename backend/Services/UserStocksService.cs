@@ -115,4 +115,38 @@ public sealed class UserStocksService(AppDbContext dbContext) : IUserStocksServi
         await dbContext.SaveChangesAsync(cancellationToken);
         return (true, null);
     }
+
+    public async Task<(bool Succeeded, string? Error, UserStockResponse? Item)> UpdateInvestmentAsync(
+        Guid userId,
+        string ticker,
+        decimal amount,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(ticker))
+        {
+            return (false, "Ticker is required.", null);
+        }
+
+        if (amount < 0)
+        {
+            return (false, "Amount must be greater than or equal to 0.", null);
+        }
+
+        var normalizedTicker = ticker.Trim().ToUpperInvariant();
+        var item = await dbContext.UserStocks
+            .Include(x => x.Stock)
+            .FirstOrDefaultAsync(
+                x => x.UserId == userId && x.Stock != null && x.Stock.Ticker == normalizedTicker,
+                cancellationToken);
+
+        if (item is null)
+        {
+            return (false, "Ticker not found in your list.", null);
+        }
+
+        item.CurrentInvestment = amount;
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return (true, null, new UserStockResponse(item.Stock!.Ticker, item.Stock.Name, item.CurrentInvestment, item.CreatedAtUtc));
+    }
 }

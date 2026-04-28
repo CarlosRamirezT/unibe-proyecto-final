@@ -20,4 +20,10 @@ public interface IUserStocksService
         Guid userId,
         string ticker,
         CancellationToken cancellationToken = default);
+
+    Task<(bool Succeeded, string? Error, UserStockResponse? Item)> UpdateInvestmentAsync(
+        Guid userId,
+        string ticker,
+        decimal amount,
+        CancellationToken cancellationToken = default);
 }

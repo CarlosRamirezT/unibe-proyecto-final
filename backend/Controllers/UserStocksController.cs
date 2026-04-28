@@ -67,6 +67,31 @@ public sealed class UserStocksController(IUserStocksService userStocksService) :
         return NoContent();
     }
 
+    [HttpPut("{ticker}/investment")]
+    public async Task<IActionResult> UpdateInvestment(
+        [FromRoute] string ticker,
+        [FromBody] UserStockInvestmentUpdateRequest request,
+        CancellationToken cancellationToken)
+    {
+        if (!TryGetUserId(out var userId))
+        {
+            return Unauthorized(new { error = "Invalid token." });
+        }
+
+        var result = await userStocksService.UpdateInvestmentAsync(userId, ticker, request.Amount, cancellationToken);
+        if (!result.Succeeded)
+        {
+            if (result.Error == "Ticker not found in your list.")
+            {
+                return NotFound(new { error = result.Error });
+            }
+
+            return BadRequest(new { error = result.Error });
+        }
+
+        return Ok(result.Item);
+    }
+
     private bool TryGetUserId(out Guid userId)
     {
         var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue(ClaimTypes.Name);

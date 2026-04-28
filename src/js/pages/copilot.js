@@ -1,4 +1,6 @@
 window.addEventListener('load', function() {
+    hydrateStocksContext();
+
     try {
         var dates = ['Jan 15', 'Jan 16', 'Jan 17', 'Jan 18', 'Jan 19', 'Jan 22', 'Jan 23'];
         var prices = [475, 478, 482, 480, 485, 488, 485.5];
@@ -43,3 +45,34 @@ window.addEventListener('load', function() {
         document.getElementById('stock-chart').innerHTML = '<div class="flex items-center justify-center h-full text-textSecondary">Chart unavailable</div>';
     }
 });
+
+function hydrateStocksContext() {
+    var contextEl = document.getElementById('copilot-stocks-context');
+    if (!contextEl) {
+        return;
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var tickersRaw = params.get('tickers') || '';
+    var focusRaw = params.get('focus') || '';
+    var tickers = tickersRaw
+        .split(',')
+        .map(function(value) { return value.trim().toUpperCase(); })
+        .filter(function(value) { return value.length > 0; });
+    var focus = focusRaw.trim().toUpperCase();
+
+    if (!tickers.length && !focus) {
+        return;
+    }
+
+    var contextText = 'Contexto IA';
+    if (tickers.length) {
+        contextText += ': ' + tickers.join(', ');
+    }
+    if (focus) {
+        contextText += ' | Foco: ' + focus;
+    }
+
+    contextEl.textContent = contextText;
+    contextEl.classList.remove('hidden');
+}
