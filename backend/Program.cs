@@ -60,6 +60,7 @@ builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IComplianceService, ComplianceService>();
 builder.Services.AddScoped<IUserPlanService, UserPlanService>();
+builder.Services.AddScoped<IUserStocksService, UserStocksService>();
 builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 builder.Services.AddControllers();
 

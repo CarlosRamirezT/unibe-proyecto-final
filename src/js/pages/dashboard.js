@@ -66,6 +66,35 @@ async function initProtectedFlows() {
     }
 
     await initPlanSelection(token);
+    await ensureInitialStocksSelection(token);
+}
+
+async function ensureInitialStocksSelection(token) {
+    try {
+        const response = await fetch('/api/user/stocks', {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        if (response.status === 401) {
+            localStorage.removeItem('qc_auth_token');
+            localStorage.removeItem('qc_auth_user');
+            window.location.href = './login.html';
+            return;
+        }
+
+        if (!response.ok) {
+            return;
+        }
+
+        const payload = await response.json();
+        if (Array.isArray(payload) && payload.length === 0) {
+            window.location.href = './select-stocks.html';
+        }
+    } catch {
+        // Keep dashboard usable if stocks service is temporarily unavailable.
+    }
 }
 
 async function initComplianceTerms(token) {

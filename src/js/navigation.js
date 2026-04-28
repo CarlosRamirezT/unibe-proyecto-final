@@ -24,6 +24,10 @@
     disclaimer: "./qa.html",
     "market analysis": "./markets.html",
     "portfolio tracking": "./dashboard.html",
+    "mis acciones": "./my-stocks.html",
+    "my stocks": "./my-stocks.html",
+    "seleccionar acciones": "./select-stocks.html",
+    "select stocks": "./select-stocks.html",
     "api access": "./pricing.html",
     subscribe: "./news.html",
     login: "./login.html",
@@ -108,6 +112,12 @@
     }
     if (normalized.includes("pricing") || normalized.includes("plan")) {
       return "./pricing.html";
+    }
+    if (normalized.includes("mis acciones") || normalized.includes("my stocks")) {
+      return "./my-stocks.html";
+    }
+    if (normalized.includes("seleccionar acciones") || normalized.includes("select stocks")) {
+      return "./select-stocks.html";
     }
     if (normalized.includes("login") || normalized.includes("sign in")) {
       return "./login.html";
