@@ -490,7 +490,7 @@
 </div>
 
 <div class="modal fade" id="planModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered px-3">
+    <div class="modal-dialog modal-dialog-centered px-3" style="max-width: 1100px;">
         <div class="modal-content">
             <div class="flex items-center justify-between border-b border-border px-5 py-4">
                 <h5 class="text-lg font-semibold">Selecciona tu plan</h5>
@@ -499,27 +499,50 @@
                 <p class="text-sm text-textSecondary mb-4">
                     MVP: la selección de plan es informativa y no restringe funcionalidades.
                 </p>
-                <div class="space-y-3" id="plan-options-group">
-                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
-                        <input type="radio" name="user-plan" value="FREE" class="accent-blue-500" />
-                        <span class="font-medium">FREE</span>
-                        <span class="text-xs text-textSecondary ml-auto">DOP 0 /mes</span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
-                        <input type="radio" name="user-plan" value="PRO" class="accent-blue-500" />
-                        <span class="font-medium">PRO</span>
-                        <span class="text-xs text-textSecondary ml-auto">DOP 1,899 /mes</span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
-                        <input type="radio" name="user-plan" value="ELITE" class="accent-blue-500" />
-                        <span class="font-medium">ELITE</span>
-                        <span class="text-xs text-textSecondary ml-auto">DOP 4,999 /mes</span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-background border border-border rounded-lg px-3 py-3 cursor-pointer">
-                        <input type="radio" name="user-plan" value="B2B" class="accent-blue-500" />
-                        <span class="font-medium">B2B</span>
-                        <span class="text-xs text-textSecondary ml-auto">Negociable /mes</span>
-                    </label>
+                <div class="hidden" aria-hidden="true">
+                    <input type="radio" name="user-plan" value="FREE" />
+                    <input type="radio" name="user-plan" value="PRO" />
+                    <input type="radio" name="user-plan" value="ELITE" />
+                </div>
+                <div id="plan-options-group" class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <article data-plan-card="FREE" class="bg-surface border border-border rounded-2xl p-6 transition-all">
+                        <h6 class="text-2xl font-bold mb-2">Free</h6>
+                        <p class="text-textSecondary mb-4">Perfect for beginners exploring trading</p>
+                        <div class="mb-5">
+                            <span class="text-4xl font-bold">DOP 0</span>
+                            <span class="text-textSecondary ml-2">/month</span>
+                        </div>
+                        <button type="button" data-plan-select="FREE" class="plan-select-btn w-full bg-surface border border-accent text-accent font-semibold rounded-lg py-3 hover:bg-accent hover:text-white transition-all">
+                            Get Started
+                        </button>
+                    </article>
+
+                    <article data-plan-card="PRO" class="bg-gradient-to-b from-accent/10 to-surface border-2 border-accent rounded-2xl p-6 shadow-lg shadow-accent/20 transition-all relative overflow-hidden">
+                        <div class="absolute -top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-secondary to-accent text-white text-xs font-semibold px-4 py-1.5 rounded-b-xl">
+                            MOST POPULAR
+                        </div>
+                        <h6 class="text-2xl font-bold mb-2 mt-4">Pro</h6>
+                        <p class="text-textSecondary mb-4">For serious traders who need more</p>
+                        <div class="mb-5">
+                            <span class="text-4xl font-bold">DOP 1,899</span>
+                            <span class="text-textSecondary ml-2">/month</span>
+                        </div>
+                        <button type="button" data-plan-select="PRO" class="plan-select-btn w-full bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg py-3 hover:shadow-lg hover:shadow-accent/30 transition-all">
+                            Start Pro Trial
+                        </button>
+                    </article>
+
+                    <article data-plan-card="ELITE" class="bg-surface border border-border rounded-2xl p-6 transition-all">
+                        <h6 class="text-2xl font-bold mb-2">Elite</h6>
+                        <p class="text-textSecondary mb-4">For professional traders & institutions</p>
+                        <div class="mb-5">
+                            <span class="text-4xl font-bold">DOP 4,999</span>
+                            <span class="text-textSecondary ml-2">/month</span>
+                        </div>
+                        <button type="button" data-plan-select="ELITE" class="plan-select-btn w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg py-3 hover:shadow-lg hover:shadow-secondary/30 transition-all">
+                            Contact Sales
+                        </button>
+                    </article>
                 </div>
                 <p id="plan-modal-message" class="text-sm text-textSecondary mt-3"></p>
             </div>
@@ -527,7 +550,7 @@
                 <button id="cancel-plan-btn" type="button" class="bg-background border border-border text-textPrimary rounded-lg px-4 py-2.5">
                     Cerrar
                 </button>
-                <button id="save-plan-btn" type="button" class="bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-5 py-2.5">
+                <button id="save-plan-btn" type="button" class="hidden bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-lg px-5 py-2.5">
                     Guardar plan
                 </button>
             </div>

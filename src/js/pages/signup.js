@@ -45,6 +45,7 @@ window.addEventListener('load', function() {
             }
 
             showMessage(messageBox, 'Account created successfully. Redirecting to login...');
+            localStorage.setItem('qc_plan_selection_required', '1');
             window.setTimeout(function() {
                 window.location.href = './login.html?registered=1';
             }, 700);

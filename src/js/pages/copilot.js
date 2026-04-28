@@ -107,21 +107,46 @@ function renderStocksContext() {
         return;
     }
 
-    if (!selectedTickers.length && !focusTicker) {
+    var availableTickers = uniqueTickers(
+        [focusTicker].concat(selectedTickers).filter(function(value) {
+            return String(value || '').trim().length > 0;
+        })
+    );
+
+    if (!availableTickers.length) {
         contextEl.classList.add('hidden');
         contextEl.textContent = '';
         return;
     }
 
-    var contextText = 'Contexto IA';
-    if (selectedTickers.length) {
-        contextText += ': ' + selectedTickers.join(', ');
-    }
-    if (focusTicker) {
-        contextText += ' | Foco: ' + focusTicker;
+    if (!focusTicker || availableTickers.indexOf(focusTicker) === -1) {
+        focusTicker = availableTickers[0];
     }
 
-    contextEl.textContent = contextText;
+    contextEl.innerHTML = [
+        '<div class="flex flex-wrap items-center gap-2 justify-between">',
+            '<span class="font-semibold">Contexto IA</span>',
+            '<label class="inline-flex items-center gap-2">',
+                '<span class="text-white/80">Ticker</span>',
+                '<select id="copilot-ticker-select" class="bg-surface border border-white/30 rounded-md px-2 py-1 text-white text-sm focus:outline-none focus:border-white/60">',
+                    availableTickers.map(function(ticker) {
+                        var isSelected = ticker === focusTicker ? ' selected' : '';
+                        return '<option value="' + escapeHtml(ticker) + '"' + isSelected + '>' + escapeHtml(ticker) + '</option>';
+                    }).join(''),
+                '</select>',
+            '</label>',
+        '</div>',
+        '<p class="mt-1 mb-0 text-white/80">Universo: ' + escapeHtml(availableTickers.join(', ')) + '</p>'
+    ].join('');
+
+    var selectEl = document.getElementById('copilot-ticker-select');
+    if (selectEl) {
+        selectEl.addEventListener('change', function(event) {
+            focusTicker = String(event.target.value || '').trim().toUpperCase();
+            loadMarketSummary();
+        });
+    }
+
     contextEl.classList.remove('hidden');
 }
 
@@ -158,7 +183,7 @@ function wireChatInteractions() {
             var subtitleEl = button.querySelector('p');
             var title = titleEl ? titleEl.textContent.trim() : '';
             var subtitle = subtitleEl ? subtitleEl.textContent.trim() : '';
-            var prompt = subtitle ? title + ': ' + subtitle : title;
+            var prompt = buildQuickPrompt(title, subtitle);
 
             inputEl.value = prompt;
             submitChatMessage(inputEl, messagesEl);
@@ -207,6 +232,34 @@ function getQuickPromptHelpText(title) {
     }
 
     return 'Prompt sugerido para obtener respuestas mas rapidas del asistente.';
+}
+
+function buildQuickPrompt(title, subtitle) {
+    var normalized = String(title || '').toLowerCase();
+    var activeTicker = getActiveTicker();
+
+    if (normalized.indexOf('analyze') >= 0) {
+        var universe = uniqueTickers([focusTicker].concat(selectedTickers)).join(', ');
+        return [
+            'Analyze this ticker: ' + activeTicker + '.',
+            subtitle || 'Get comprehensive analysis of any stock.',
+            universe ? 'Context tickers: ' + universe + '.' : ''
+        ].filter(function(line) { return line.length > 0; }).join(' ');
+    }
+
+    return subtitle ? title + ': ' + subtitle : title;
+}
+
+function getActiveTicker() {
+    if (focusTicker) {
+        return focusTicker;
+    }
+
+    if (selectedTickers.length) {
+        return selectedTickers[0];
+    }
+
+    return 'AAPL';
 }
 
 async function loadMarketSummary() {
@@ -332,7 +385,7 @@ function renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl) {
                 escapeHtml(indicatorName + suffix) +
                 buildInfoTipHtml(indicatorName, getIndicatorHelpText(indicatorName)) +
             '</span>',
-            '<span class="text-sm font-medium">' + escapeHtml(String(item.value || '-')) + '</span>'
+            '<span class="text-sm font-medium ' + getIndicatorValueClass(indicatorName, String(item.value || '-')) + '">' + escapeHtml(String(item.value || '-')) + '</span>'
         ].join('');
         indicatorsEl.appendChild(li);
     });
@@ -405,6 +458,7 @@ async function submitChatMessage(inputEl, messagesEl) {
     var loadingNode = appendAssistantMessage(messagesEl, 'Analizando...');
 
     try {
+        var chatTickers = focusTicker ? [focusTicker] : selectedTickers;
         var response = await fetch('/api/ai/chat', {
             method: 'POST',
             headers: {
@@ -413,25 +467,30 @@ async function submitChatMessage(inputEl, messagesEl) {
             },
             body: JSON.stringify({
                 message: rawMessage,
-                tickers: selectedTickers,
+                tickers: chatTickers,
                 metrics: {}
             })
         });
 
         if (response.status === 401) {
-            loadingNode.textContent = 'Tu sesion expiro. Inicia sesion nuevamente.';
+            renderAssistantText(loadingNode, 'Tu sesion expiro. Inicia sesion nuevamente.', false);
             return;
         }
 
         var payload = await safeJson(response);
         if (!response.ok) {
-            loadingNode.textContent = payload && payload.error ? payload.error : 'No se pudo obtener respuesta del modelo.';
+            if (payload && payload.error && payload.error.toLowerCase().indexOf('rate limit') >= 0) {
+                renderAssistantText(loadingNode, 'El proveedor IA esta saturado temporalmente (rate limit). Intenta nuevamente en 30-60 segundos.', false);
+                return;
+            }
+
+            renderAssistantText(loadingNode, payload && payload.error ? payload.error : 'No se pudo obtener respuesta del modelo.', false);
             return;
         }
 
-        loadingNode.textContent = payload && payload.response ? payload.response : 'No se recibio contenido del modelo.';
+        renderAssistantText(loadingNode, payload && payload.response ? payload.response : 'No se recibio contenido del modelo.', true);
     } catch {
-        loadingNode.textContent = 'Error de red consultando el asistente IA.';
+        renderAssistantText(loadingNode, 'Error de red consultando el asistente IA.', false);
     }
 
     messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -459,15 +518,101 @@ function appendAssistantMessage(messagesEl, text) {
         '<i class="fa-solid fa-robot text-white text-sm"></i>',
         '</div>',
         '<div class="bg-surface border border-border rounded-lg p-4 max-w-2xl">',
-        '<p class="text-sm whitespace-pre-wrap"></p>',
+        '<div class="text-sm"></div>',
         '</div>'
     ].join('');
 
-    var textNode = wrapper.querySelector('p');
-    textNode.textContent = text;
+    var textNode = wrapper.querySelector('div.text-sm');
+    renderAssistantText(textNode, text, false);
     messagesEl.appendChild(wrapper);
     messagesEl.scrollTop = messagesEl.scrollHeight;
     return textNode;
+}
+
+function renderAssistantText(node, text, allowRichFormat) {
+    if (!node) {
+        return;
+    }
+
+    var safeText = String(text || '');
+    if (!allowRichFormat) {
+        node.textContent = safeText;
+        return;
+    }
+
+    node.innerHTML = formatMarkdownLikeTextAsHtml(safeText);
+}
+
+function formatMarkdownLikeTextAsHtml(text) {
+    var lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
+    var html = [];
+    var listType = null;
+
+    function closeListIfNeeded() {
+        if (!listType) {
+            return;
+        }
+
+        html.push(listType === 'ol' ? '</ol>' : '</ul>');
+        listType = null;
+    }
+
+    lines.forEach(function(rawLine) {
+        var line = rawLine.trim();
+        if (!line) {
+            closeListIfNeeded();
+            return;
+        }
+
+        var headingMatch = line.match(/^#{1,6}\s+(.+)$/);
+        if (headingMatch) {
+            closeListIfNeeded();
+            html.push('<p class="font-semibold text-textPrimary mt-2 mb-1">' + formatInlineMarkdown(headingMatch[1]) + '</p>');
+            return;
+        }
+
+        var bulletMatch = line.match(/^[-*]\s+(.+)$/);
+        if (bulletMatch) {
+            if (listType !== 'ul') {
+                closeListIfNeeded();
+                listType = 'ul';
+                html.push('<ul class="list-disc pl-5 my-1 space-y-1">');
+            }
+
+            html.push('<li>' + formatInlineMarkdown(bulletMatch[1]) + '</li>');
+            return;
+        }
+
+        var orderedMatch = line.match(/^\d+\.\s+(.+)$/);
+        if (orderedMatch) {
+            if (listType !== 'ol') {
+                closeListIfNeeded();
+                listType = 'ol';
+                html.push('<ol class="list-decimal pl-5 my-1 space-y-1">');
+            }
+
+            html.push('<li>' + formatInlineMarkdown(orderedMatch[1]) + '</li>');
+            return;
+        }
+
+        closeListIfNeeded();
+        html.push('<p class="leading-6 my-1">' + formatInlineMarkdown(line) + '</p>');
+    });
+
+    closeListIfNeeded();
+
+    if (!html.length) {
+        return '<p class="leading-6">' + escapeHtml(text) + '</p>';
+    }
+
+    return html.join('');
+}
+
+function formatInlineMarkdown(text) {
+    var safe = escapeHtml(String(text || ''));
+    safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    safe = safe.replace(/__(.*?)__/g, '<strong>$1</strong>');
+    return safe;
 }
 
 function safeJson(response) {
@@ -486,4 +631,56 @@ function uniqueTickers(list) {
         seen.add(value);
         return true;
     });
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function getIndicatorValueClass(indicatorName, rawValue) {
+    var name = String(indicatorName || '').toUpperCase();
+    var value = parseIndicatorNumericValue(rawValue);
+    if (!Number.isFinite(value)) {
+        return 'text-textPrimary';
+    }
+
+    if (name.indexOf('RSI') >= 0) {
+        if (value >= 45 && value <= 60) return 'text-success';
+        if ((value >= 35 && value < 45) || (value > 60 && value <= 70)) return 'text-warning';
+        return 'text-danger';
+    }
+
+    if (name.indexOf('VOLATILIDAD') >= 0) {
+        if (value < 2) return 'text-success';
+        if (value <= 4) return 'text-warning';
+        return 'text-danger';
+    }
+
+    if (name.indexOf('BETA') >= 0) {
+        if (value >= 0.8 && value <= 1.2) return 'text-success';
+        if ((value >= 0.6 && value < 0.8) || (value > 1.2 && value <= 1.6)) return 'text-warning';
+        return 'text-danger';
+    }
+
+    if (name.indexOf('VOLUMEN RELATIVO') >= 0) {
+        if (value >= 0.8 && value <= 1.8) return 'text-success';
+        if ((value >= 0.5 && value < 0.8) || (value > 1.8 && value <= 2.5)) return 'text-warning';
+        return 'text-danger';
+    }
+
+    return 'text-textPrimary';
+}
+
+function parseIndicatorNumericValue(rawValue) {
+    var normalized = String(rawValue || '')
+        .replace(',', '.')
+        .replace(/[^0-9.+-]/g, '');
+
+    var parsed = Number(normalized);
+    return Number.isFinite(parsed) ? parsed : NaN;
 }

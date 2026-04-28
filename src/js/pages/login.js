@@ -53,7 +53,7 @@ window.addEventListener('load', function() {
             localStorage.setItem('qc_terms_modal_pending', 'true');
             showMessage(messageBox, 'Login successful. Redirecting...');
             window.setTimeout(function () {
-                window.location.href = './dashboard.html';
+                window.location.href = './copilot.html';
             }, 300);
         } catch {
             showMessage(messageBox, 'Network error. Please try again.', true);

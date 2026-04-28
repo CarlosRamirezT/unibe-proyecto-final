@@ -34,8 +34,8 @@
     signup: "./signup.html",
     "sign up": "./signup.html",
     "create account": "./signup.html",
-    "start trading": "./dashboard.html",
-    "start trading dr": "./dashboard.html",
+    "start trading": "./copilot.html",
+    "start trading dr": "./copilot.html",
     trading: "./dashboard.html",
     "trading copilot": "./copilot.html",
     copilot: "./copilot.html"
@@ -43,8 +43,8 @@
 
   const ctaRoutes = {
     "explore ai features": "./copilot.html",
-    "start trading": "./dashboard.html",
-    "start trading dr": "./dashboard.html",
+    "start trading": "./copilot.html",
+    "start trading dr": "./copilot.html",
     trading: "./dashboard.html",
     login: "./login.html",
     signup: "./signup.html",
@@ -125,7 +125,10 @@
     if (normalized.includes("sign up") || normalized.includes("signup") || normalized.includes("register")) {
       return "./signup.html";
     }
-    if (normalized.includes("start trading") || normalized === "trading") {
+    if (normalized.includes("start trading")) {
+      return "./copilot.html";
+    }
+    if (normalized === "trading") {
       return "./dashboard.html";
     }
     if (normalized === "home") {
@@ -362,31 +365,32 @@
       return a.textContent.replace(/\s+/g, ' ').trim().toLowerCase() === 'login';
     });
 
+    const rightSection = loginAnchor
+      ? loginAnchor.parentElement
+      : header.querySelector('.flex.items-center.space-x-4');
+    if (!rightSection) return;
+
+    function setLoggedOutUi() {
+      const existingWrapper = rightSection.querySelector('.qc-avatar-wrapper');
+      if (existingWrapper) {
+        existingWrapper.remove();
+      }
+
+      if (loginAnchor) {
+        loginAnchor.style.display = '';
+      }
+    }
+
     if (token) {
       // Hide Login link
       if (loginAnchor) {
         loginAnchor.style.display = 'none';
       }
 
-      // Get user initials from stored user data
-      let initial = 'U';
-      try {
-        const userData = JSON.parse(localStorage.getItem('qc_auth_user') || '{}');
-        const email = userData.email || userData.Email || '';
-        if (email) {
-          initial = email.charAt(0).toUpperCase();
-        }
-      } catch (_) {}
-
       // Avoid inserting twice
       if (header.querySelector('.qc-user-avatar-btn')) return;
 
       // Build avatar button + dropdown
-      const rightSection = loginAnchor
-        ? loginAnchor.parentElement
-        : header.querySelector('.flex.items-center.space-x-4');
-      if (!rightSection) return;
-
       const wrapper = document.createElement('div');
       wrapper.className = 'qc-avatar-wrapper';
 
@@ -395,14 +399,16 @@
       btn.className = 'qc-user-avatar-btn';
       btn.setAttribute('aria-haspopup', 'true');
       btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = initial;
+      btn.setAttribute('aria-label', 'Open user menu');
+      btn.innerHTML = '<i class="fa-solid fa-user qc-user-avatar-icon" aria-hidden="true"></i>';
 
       const dropdown = document.createElement('div');
       dropdown.className = 'qc-avatar-dropdown';
       dropdown.setAttribute('role', 'menu');
       dropdown.innerHTML =
         '<button type="button" class="qc-avatar-menu-item" disabled>Perfil</button>' +
-        '<button type="button" class="qc-avatar-menu-item" disabled>Configuraci\u00f3n</button>' +
+        '<button type="button" class="qc-avatar-menu-item" disabled>Preferencias</button>' +
+        '<button type="button" class="qc-avatar-menu-item" disabled>Configuraciones</button>' +
         '<hr class="qc-avatar-menu-divider">' +
         '<button type="button" class="qc-avatar-menu-item qc-logout-btn">Log Out</button>';
 
@@ -434,13 +440,12 @@
         localStorage.removeItem('qc_auth_token');
         localStorage.removeItem('qc_auth_user');
         localStorage.removeItem('qc_terms_modal_pending');
-        window.location.href = './login.html';
+        setLoggedOutUi();
+        window.location.href = './index.html';
       });
     } else {
       // Ensure Login is visible when not authenticated
-      if (loginAnchor) {
-        loginAnchor.style.display = '';
-      }
+      setLoggedOutUi();
     }
   }
 

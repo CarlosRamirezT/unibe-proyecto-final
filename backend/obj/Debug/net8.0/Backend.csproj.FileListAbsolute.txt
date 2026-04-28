@@ -109,3 +109,4 @@
 /Users/cadara/projects/unibe-proyecto-final/backend/obj/Debug/net8.0/Backend.pdb
 /Users/cadara/projects/unibe-proyecto-final/backend/obj/Debug/net8.0/Backend.genruntimeconfig.cache
 /Users/cadara/projects/unibe-proyecto-final/backend/obj/Debug/net8.0/ref/Backend.dll
+/Users/cadara/projects/unibe-proyecto-final/backend/bin/Debug/net8.0/Prompts/copilot-system-context.md

@@ -53,6 +53,8 @@ const PLAN_LABELS = {
     B2B: 'B2B'
 };
 
+const PLAN_SELECTION_REQUIRED_KEY = 'qc_plan_selection_required';
+
 async function initProtectedFlows() {
     const token = localStorage.getItem('qc_auth_token');
     if (!token) {
@@ -192,8 +194,11 @@ async function initPlanSelection(token) {
     const cancelButton = document.getElementById('cancel-plan-btn');
     const message = document.getElementById('plan-modal-message');
     const modalElement = document.getElementById('planModal');
+    const planButtons = modalElement
+        ? Array.from(modalElement.querySelectorAll('[data-plan-select]'))
+        : [];
 
-    if (!badge || !editButton || !saveButton || !cancelButton || !message || !modalElement) {
+    if (!badge || !editButton || !saveButton || !cancelButton || !message || !modalElement || planButtons.length === 0) {
         return;
     }
 
@@ -225,7 +230,12 @@ async function initPlanSelection(token) {
 
     renderPlanBadge(currentPlan, badge);
 
-    if (!currentPlan) {
+    if (currentPlan) {
+        localStorage.removeItem(PLAN_SELECTION_REQUIRED_KEY);
+    }
+
+    const requiresPlanSelection = localStorage.getItem(PLAN_SELECTION_REQUIRED_KEY) === '1';
+    if (!currentPlan && requiresPlanSelection) {
         hideCancelButton(cancelButton, true);
         openPlanModal(planModal, currentPlan);
     }
@@ -240,45 +250,57 @@ async function initPlanSelection(token) {
         planModal.hide();
     });
 
-    saveButton.addEventListener('click', async function() {
-        const selected = document.querySelector('input[name="user-plan"]:checked');
-        if (!selected) {
-            message.textContent = 'Selecciona un plan para continuar.';
-            message.className = 'text-sm text-danger mt-3';
-            return;
-        }
-
-        saveButton.disabled = true;
-        saveButton.textContent = 'Guardando...';
-        message.textContent = '';
-
-        try {
-            const response = await fetch('/api/user/plan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token
-                },
-                body: JSON.stringify({ plan: selected.value })
-            });
-
-            const payload = await response.json();
-            if (!response.ok) {
-                message.textContent = payload?.error || 'No se pudo guardar el plan.';
-                message.className = 'text-sm text-danger mt-3';
+    planButtons.forEach(function(button) {
+        button.addEventListener('click', async function() {
+            const selectedPlan = button.getAttribute('data-plan-select');
+            if (!selectedPlan) {
                 return;
             }
 
-            currentPlan = payload.plan;
-            renderPlanBadge(currentPlan, badge);
-            planModal.hide();
-        } catch {
-            message.textContent = 'Error de red. Intenta nuevamente.';
-            message.className = 'text-sm text-danger mt-3';
-        } finally {
-            saveButton.disabled = false;
-            saveButton.textContent = 'Guardar plan';
-        }
+            const selectedRadio = document.querySelector('input[name="user-plan"][value="' + selectedPlan + '"]');
+            if (selectedRadio) {
+                selectedRadio.checked = true;
+            }
+
+            message.textContent = '';
+            setPlanButtonsState(planButtons, true, button, 'Guardando...');
+
+            try {
+                const response = await fetch('/api/user/plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + token
+                    },
+                    body: JSON.stringify({ plan: selectedPlan })
+                });
+
+                const payload = await response.json();
+                if (!response.ok) {
+                    message.textContent = payload?.error || 'No se pudo guardar el plan.';
+                    message.className = 'text-sm text-danger mt-3';
+                    return;
+                }
+
+                currentPlan = payload.plan;
+                renderPlanBadge(currentPlan, badge);
+                localStorage.removeItem(PLAN_SELECTION_REQUIRED_KEY);
+                planModal.hide();
+                window.alert('Tu plan se selecciono exitosamente.');
+                window.location.href = './index.html';
+            } catch {
+                message.textContent = 'Error de red. Intenta nuevamente.';
+                message.className = 'text-sm text-danger mt-3';
+            } finally {
+                setPlanButtonsState(planButtons, false);
+            }
+        });
+    });
+
+    // Fallback to preserve legacy flow if this button is ever made visible again.
+    saveButton.addEventListener('click', function() {
+        message.textContent = 'Selecciona tu plan desde las tarjetas para continuar.';
+        message.className = 'text-sm text-danger mt-3';
     });
 }
 
@@ -295,6 +317,22 @@ function openPlanModal(planModal, plan) {
     }
 
     planModal.show();
+}
+
+function setPlanButtonsState(buttons, disabled, targetButton, loadingText) {
+    buttons.forEach(function(btn) {
+        const defaultLabel = btn.getAttribute('data-default-label') || btn.textContent.trim();
+        if (!btn.getAttribute('data-default-label')) {
+            btn.setAttribute('data-default-label', defaultLabel);
+        }
+
+        btn.disabled = disabled;
+        if (disabled && targetButton && btn === targetButton) {
+            btn.textContent = loadingText || 'Guardando...';
+        } else {
+            btn.textContent = defaultLabel;
+        }
+    });
 }
 
 function hideCancelButton(button, required) {
