@@ -106,3 +106,33 @@ docker compose up -d --build backend
 ```
 
 Nota: en `docker-compose.yml` el backend ya mapea esta variable con `Ai__OpenAiApiKey: ${OPENAI_API_KEY:-}`.
+
+## Build y Docker en Windows
+
+Comandos recomendados en Windows PowerShell (desde la raiz del repo):
+
+1. Build del backend (.NET):
+
+```powershell
+cd backend
+dotnet build
+cd ..
+```
+
+2. Levantar/reconstruir contenedores:
+
+```powershell
+docker compose up -d --build --force-recreate
+```
+
+Importante:
+- `--force-build` no es un flag valido de `docker compose up`.
+- El flag correcto para forzar recompilacion de imagenes es `--build`.
+- El flag correcto para forzar recreacion de contenedores es `--force-recreate`.
+
+Opcional (si quieres bajar todo antes de volver a levantar):
+
+```powershell
+docker compose down
+docker compose up -d --build --force-recreate
+```

@@ -207,3 +207,11 @@ marimo/_lsp/
 __marimo__/
 .DS_Store
 .vscode/
+
+# .NET / ASP.NET build artifacts
+**/bin/
+**/obj/
+*.user
+*.rsuser
+*.suo
+.vs/
