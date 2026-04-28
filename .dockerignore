@@ -1,0 +1,9 @@
+.git/
+.vscode/
+**/.DS_Store
+figma-design/
+docs/
+backend/bin/
+backend/obj/
+frontend/node_modules/
+frontend/dist/
