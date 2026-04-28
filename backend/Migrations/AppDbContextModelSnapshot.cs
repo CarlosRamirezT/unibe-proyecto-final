@@ -50,6 +50,34 @@ namespace Backend.Migrations
                     b.ToTable("app_users", (string)null);
                 });
 
+            modelBuilder.Entity("Backend.Models.TermsAcceptance", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("AcceptedAtUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("TermsVersion")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "TermsVersion")
+                        .IsUnique();
+
+                    b.ToTable("terms_acceptances", (string)null);
+                });
+
             modelBuilder.Entity("Backend.Models.WatchlistItem", b =>
                 {
                     b.Property<int>("Id")
@@ -73,6 +101,17 @@ namespace Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("watchlist_items", (string)null);
+                });
+
+            modelBuilder.Entity("Backend.Models.TermsAcceptance", b =>
+                {
+                    b.HasOne("Backend.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

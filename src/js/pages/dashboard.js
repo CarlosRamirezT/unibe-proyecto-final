@@ -42,4 +42,86 @@ window.addEventListener('load', function() {
     } catch(e) {
         document.getElementById('trading-chart').innerHTML = '<div class="flex items-center justify-center h-full text-textSecondary">Chart unavailable</div>';
     }
+
+    initComplianceTerms();
 });
+
+async function initComplianceTerms() {
+    const token = localStorage.getItem('qc_auth_token');
+    if (!token) {
+        window.location.href = './login.html';
+        return;
+    }
+
+    const termsText = document.getElementById('terms-modal-text');
+    const versionBadge = document.getElementById('terms-modal-version');
+    const acceptButton = document.getElementById('accept-terms-btn');
+
+    if (!termsText || !versionBadge || !acceptButton || typeof bootstrap === 'undefined') {
+        return;
+    }
+
+    const modalElement = document.getElementById('termsModal');
+    const termsModal = new bootstrap.Modal(modalElement, {
+        backdrop: 'static',
+        keyboard: false
+    });
+
+    let payload;
+    try {
+        const response = await fetch('/api/compliance/terms', {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        if (response.status === 401) {
+            localStorage.removeItem('qc_auth_token');
+            localStorage.removeItem('qc_auth_user');
+            localStorage.removeItem('qc_terms_modal_pending');
+            window.location.href = './login.html';
+            return;
+        }
+
+        payload = await response.json();
+    } catch {
+        return;
+    }
+
+    termsText.value = payload.text || '';
+    versionBadge.textContent = payload.version || '';
+
+    if (!payload.accepted) {
+        termsModal.show();
+    } else {
+        localStorage.removeItem('qc_terms_modal_pending');
+    }
+
+    acceptButton.addEventListener('click', async function() {
+        acceptButton.disabled = true;
+        acceptButton.textContent = 'Guardando...';
+
+        try {
+            const response = await fetch('/api/compliance/terms/accept', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
+                },
+                body: JSON.stringify({ version: payload.version })
+            });
+
+            if (!response.ok) {
+                acceptButton.disabled = false;
+                acceptButton.textContent = 'Aceptar y continuar';
+                return;
+            }
+
+            localStorage.removeItem('qc_terms_modal_pending');
+            termsModal.hide();
+        } catch {
+            acceptButton.disabled = false;
+            acceptButton.textContent = 'Aceptar y continuar';
+        }
+    }, { once: true });
+}

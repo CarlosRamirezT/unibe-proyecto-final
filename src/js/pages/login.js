@@ -51,10 +51,10 @@ window.addEventListener('load', function() {
             localStorage.setItem('qc_auth_token', payload.token);
             localStorage.setItem('qc_auth_user', JSON.stringify(payload.user));
             localStorage.setItem('qc_terms_modal_pending', 'true');
-            window.dispatchEvent(new CustomEvent('qc:terms-modal-requested'));
-
-            showMessage(messageBox, 'Login successful.');
-            openTermsModal();
+            showMessage(messageBox, 'Login successful. Redirecting...');
+            window.setTimeout(function () {
+                window.location.href = './dashboard.html';
+            }, 300);
         } catch {
             showMessage(messageBox, 'Network error. Please try again.', true);
         } finally {
@@ -62,41 +62,6 @@ window.addEventListener('load', function() {
         }
     });
 });
-
-function openTermsModal() {
-    let modal = document.getElementById('terms-auth-modal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'terms-auth-modal';
-        modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4';
-        modal.innerHTML = `
-            <div class="bg-surface border border-border rounded-2xl p-6 w-full max-w-md">
-                <h3 class="text-xl font-semibold mb-2">Terms of Service</h3>
-                <p class="text-textSecondary text-sm mb-6">Before entering the dashboard, review and accept Terms in the next step.</p>
-                <div class="flex gap-3">
-                    <button id="terms-later-btn" class="flex-1 bg-background border border-border text-textPrimary rounded-lg py-2.5">Stay Here</button>
-                    <button id="terms-continue-btn" class="flex-1 bg-gradient-to-r from-secondary to-accent text-white rounded-lg py-2.5">Continue</button>
-                </div>
-            </div>`;
-        document.body.appendChild(modal);
-
-        modal.querySelector('#terms-later-btn').addEventListener('click', function() {
-            modal.classList.add('hidden');
-        });
-
-        modal.querySelector('#terms-continue-btn').addEventListener('click', function() {
-            window.location.href = './dashboard.html';
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-            }
-        });
-    }
-
-    modal.classList.remove('hidden');
-}
 
 function ensureMessageBox(form) {
     let box = document.getElementById('login-message');
