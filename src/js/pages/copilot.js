@@ -4,6 +4,7 @@ var focusTicker = '';
 window.addEventListener('load', async function() {
     hydrateStocksContextFromQuery();
     await hydrateStocksContextFromUser();
+    await loadMarketSummary();
     wireChatInteractions();
 
     try {
@@ -162,6 +163,103 @@ function wireChatInteractions() {
             submitChatMessage(inputEl, messagesEl);
         });
     });
+}
+
+async function loadMarketSummary() {
+    var loadingEl = document.getElementById('market-summary-loading');
+    var errorEl = document.getElementById('market-summary-error');
+    var contentEl = document.getElementById('market-summary-content');
+    var tickerEl = document.getElementById('market-summary-ticker');
+    var demoBadgeEl = document.getElementById('market-summary-demo-badge');
+    var rangesBody = document.getElementById('market-summary-ranges-body');
+    var indicatorsEl = document.getElementById('market-summary-indicators');
+
+    if (!loadingEl || !errorEl || !contentEl || !tickerEl || !demoBadgeEl || !rangesBody || !indicatorsEl) {
+        return;
+    }
+
+    var targetTicker = focusTicker || (selectedTickers.length ? selectedTickers[0] : 'AAPL');
+    tickerEl.textContent = 'Ticker: ' + targetTicker;
+
+    showMarketSummaryLoading(loadingEl, errorEl, contentEl);
+
+    try {
+        var response = await fetch('/api/market/summary?ticker=' + encodeURIComponent(targetTicker));
+        var payload = await safeJson(response);
+
+        if (!response.ok || !payload) {
+            showMarketSummaryError('No se pudo cargar el resumen de mercado.', loadingEl, errorEl, contentEl);
+            return;
+        }
+
+        renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl);
+        loadingEl.classList.add('hidden');
+        errorEl.classList.add('hidden');
+        contentEl.classList.remove('hidden');
+    } catch {
+        showMarketSummaryError('Error de red al cargar indicadores.', loadingEl, errorEl, contentEl);
+    }
+}
+
+function showMarketSummaryLoading(loadingEl, errorEl, contentEl) {
+    loadingEl.classList.remove('hidden');
+    errorEl.classList.add('hidden');
+    contentEl.classList.add('hidden');
+}
+
+function showMarketSummaryError(message, loadingEl, errorEl, contentEl) {
+    loadingEl.classList.add('hidden');
+    errorEl.textContent = message;
+    errorEl.classList.remove('hidden');
+    contentEl.classList.add('hidden');
+}
+
+function renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl) {
+    var isDemo = !!payload.isDemo;
+    demoBadgeEl.textContent = isDemo ? 'demo' : 'real';
+    demoBadgeEl.className = isDemo ? 'badge text-bg-secondary' : 'badge text-bg-success';
+
+    var ranges = [
+        { label: 'Ultima hora', value: payload.lastHourChangePct },
+        { label: 'Ultimo dia', value: payload.lastDayChangePct },
+        { label: 'Ultima semana', value: payload.lastWeekChangePct },
+        { label: 'Ultimo mes', value: payload.lastMonthChangePct },
+        { label: '3 meses', value: payload.last3MonthsChangePct },
+        { label: '6 meses', value: payload.last6MonthsChangePct },
+        { label: 'Ultimo ano', value: payload.lastYearChangePct }
+    ];
+
+    rangesBody.innerHTML = '';
+    ranges.forEach(function(item) {
+        var tr = document.createElement('tr');
+        var value = Number(item.value || 0);
+        var colorClass = value >= 0 ? 'text-success' : 'text-danger';
+
+        tr.innerHTML = [
+            '<td class="text-textSecondary">' + escapeHtml(item.label) + '</td>',
+            '<td class="text-end ' + colorClass + '">' + formatPercent(value) + '</td>'
+        ].join('');
+        rangesBody.appendChild(tr);
+    });
+
+    indicatorsEl.innerHTML = '';
+    var indicators = Array.isArray(payload.indicators) ? payload.indicators : [];
+    indicators.forEach(function(item) {
+        var li = document.createElement('li');
+        li.className = 'flex items-center justify-between bg-background border border-border rounded-lg px-3 py-2';
+
+        var suffix = item && item.isDemo ? ' (demo)' : '';
+        li.innerHTML = [
+            '<span class="text-textSecondary text-xs">' + escapeHtml(String(item.name || 'Indicador') + suffix) + '</span>',
+            '<span class="text-sm font-medium">' + escapeHtml(String(item.value || '-')) + '</span>'
+        ].join('');
+        indicatorsEl.appendChild(li);
+    });
+}
+
+function formatPercent(value) {
+    var sign = value > 0 ? '+' : '';
+    return sign + value.toFixed(2) + '%';
 }
 
 async function submitChatMessage(inputEl, messagesEl) {
