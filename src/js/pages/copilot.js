@@ -151,6 +151,7 @@ function wireChatInteractions() {
     });
 
     var quickPromptButtons = document.querySelectorAll('#prompt-templates button');
+    attachQuickPromptInfoTips(quickPromptButtons);
     quickPromptButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             var titleEl = button.querySelector('h4');
@@ -163,6 +164,49 @@ function wireChatInteractions() {
             submitChatMessage(inputEl, messagesEl);
         });
     });
+}
+
+function attachQuickPromptInfoTips(quickPromptButtons) {
+    quickPromptButtons.forEach(function(button) {
+        var titleEl = button.querySelector('h4');
+        if (!titleEl || titleEl.dataset.infoTipAttached === '1') {
+            return;
+        }
+
+        var title = titleEl.textContent.trim();
+        titleEl.classList.add('inline-flex', 'items-center');
+        titleEl.insertAdjacentHTML('beforeend', buildInfoTipHtml(title, getQuickPromptHelpText(title)));
+        titleEl.dataset.infoTipAttached = '1';
+    });
+
+    if (window.InfoTip && typeof window.InfoTip.init === 'function') {
+        window.InfoTip.init(document.getElementById('prompt-templates'));
+    }
+}
+
+function getQuickPromptHelpText(title) {
+    var normalized = String(title || '').toLowerCase();
+    if (normalized.indexOf('analyze') >= 0) {
+        return 'Solicita un analisis integral del ticker: momentum, niveles y riesgos.';
+    }
+
+    if (normalized.indexOf('portfolio') >= 0) {
+        return 'Pide una propuesta de cartera balanceada segun perfil y objetivos de riesgo.';
+    }
+
+    if (normalized.indexOf('indicator') >= 0) {
+        return 'Recibe una explicacion simple de como interpretar un indicador tecnico.';
+    }
+
+    if (normalized.indexOf('risk') >= 0) {
+        return 'Evalua exposicion, volatilidad y posibles escenarios adversos.';
+    }
+
+    if (normalized.indexOf('news') >= 0) {
+        return 'Relaciona noticias recientes con posibles impactos sobre precio y sentimiento.';
+    }
+
+    return 'Prompt sugerido para obtener respuestas mas rapidas del asistente.';
 }
 
 async function loadMarketSummary() {
@@ -220,13 +264,41 @@ function renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl) {
     demoBadgeEl.className = isDemo ? 'badge text-bg-secondary' : 'badge text-bg-success';
 
     var ranges = [
-        { label: 'Ultima hora', value: payload.lastHourChangePct },
-        { label: 'Ultimo dia', value: payload.lastDayChangePct },
-        { label: 'Ultima semana', value: payload.lastWeekChangePct },
-        { label: 'Ultimo mes', value: payload.lastMonthChangePct },
-        { label: '3 meses', value: payload.last3MonthsChangePct },
-        { label: '6 meses', value: payload.last6MonthsChangePct },
-        { label: 'Ultimo ano', value: payload.lastYearChangePct }
+        {
+            label: 'Ultima hora',
+            value: payload.lastHourChangePct,
+            info: 'Cambio porcentual reciente. Util para detectar impulso intradia de corto plazo.'
+        },
+        {
+            label: 'Ultimo dia',
+            value: payload.lastDayChangePct,
+            info: 'Variacion diaria frente al cierre previo. Mide la reaccion inmediata del mercado.'
+        },
+        {
+            label: 'Ultima semana',
+            value: payload.lastWeekChangePct,
+            info: 'Tendencia de 7 dias. Ayuda a validar si el movimiento diario tiene continuidad.'
+        },
+        {
+            label: 'Ultimo mes',
+            value: payload.lastMonthChangePct,
+            info: 'Rendimiento de 30 dias aproximados. Aporta contexto para swings de corto-mediano plazo.'
+        },
+        {
+            label: '3 meses',
+            value: payload.last3MonthsChangePct,
+            info: 'Rendimiento trimestral. Referencia comun para comparar fortaleza relativa entre tickers.'
+        },
+        {
+            label: '6 meses',
+            value: payload.last6MonthsChangePct,
+            info: 'Rendimiento semestral. Muestra la direccion principal antes de una evaluacion anual.'
+        },
+        {
+            label: 'Ultimo ano',
+            value: payload.lastYearChangePct,
+            info: 'Rendimiento anual. Ayuda a evaluar comportamiento del activo en un ciclo mas amplio.'
+        }
     ];
 
     rangesBody.innerHTML = '';
@@ -236,7 +308,12 @@ function renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl) {
         var colorClass = value >= 0 ? 'text-success' : 'text-danger';
 
         tr.innerHTML = [
-            '<td class="text-textSecondary">' + escapeHtml(item.label) + '</td>',
+            '<td class="text-textSecondary">' +
+                '<span class="inline-flex items-center">' +
+                    escapeHtml(item.label) +
+                    buildInfoTipHtml(item.label, item.info) +
+                '</span>' +
+            '</td>',
             '<td class="text-end ' + colorClass + '">' + formatPercent(value) + '</td>'
         ].join('');
         rangesBody.appendChild(tr);
@@ -249,12 +326,60 @@ function renderMarketSummary(payload, demoBadgeEl, rangesBody, indicatorsEl) {
         li.className = 'flex items-center justify-between bg-background border border-border rounded-lg px-3 py-2';
 
         var suffix = item && item.isDemo ? ' (demo)' : '';
+        var indicatorName = String(item.name || 'Indicador');
         li.innerHTML = [
-            '<span class="text-textSecondary text-xs">' + escapeHtml(String(item.name || 'Indicador') + suffix) + '</span>',
+            '<span class="text-textSecondary text-xs inline-flex items-center">' +
+                escapeHtml(indicatorName + suffix) +
+                buildInfoTipHtml(indicatorName, getIndicatorHelpText(indicatorName)) +
+            '</span>',
             '<span class="text-sm font-medium">' + escapeHtml(String(item.value || '-')) + '</span>'
         ].join('');
         indicatorsEl.appendChild(li);
     });
+
+    if (window.InfoTip && typeof window.InfoTip.init === 'function') {
+        window.InfoTip.init(document.getElementById('market-summary-panel'));
+    }
+}
+
+function buildInfoTipHtml(title, content) {
+    if (window.InfoTip && typeof window.InfoTip.createButton === 'function') {
+        return window.InfoTip.createButton({
+            title: title,
+            content: content
+        });
+    }
+
+    return '';
+}
+
+function getIndicatorHelpText(indicatorName) {
+    var normalized = String(indicatorName || '').toUpperCase();
+    if (normalized.indexOf('RSI') >= 0) {
+        return 'RSI mide momentum en escala 0-100. Sobre 70 puede indicar sobrecompra; bajo 30, sobreventa.';
+    }
+
+    if (normalized.indexOf('SMA 50') >= 0) {
+        return 'Promedio movil simple de 50 periodos. Se usa para tendencia intermedia y zonas de soporte/resistencia.';
+    }
+
+    if (normalized.indexOf('SMA 200') >= 0) {
+        return 'Promedio movil simple de 200 periodos. Referencia clave para tendencia de largo plazo.';
+    }
+
+    if (normalized.indexOf('VOLATILIDAD') >= 0) {
+        return 'Volatilidad estimada del precio. Mayor volatilidad implica movimientos mas amplios y mas riesgo.';
+    }
+
+    if (normalized.indexOf('BETA') >= 0) {
+        return 'Beta compara sensibilidad frente al mercado: 1 = similar, >1 = mas agresivo, <1 = mas defensivo.';
+    }
+
+    if (normalized.indexOf('VOLUMEN RELATIVO') >= 0) {
+        return 'Volumen negociado comparado contra su promedio. >1x sugiere interes superior al habitual.';
+    }
+
+    return 'Indicador de analisis tecnico utilizado para apoyar decisiones de entrada, salida y riesgo.';
 }
 
 function formatPercent(value) {
